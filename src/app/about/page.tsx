@@ -8,7 +8,7 @@ export default function AboutPage() {
         I specialize in React, Next.js, and modern JavaScript frameworks.
       </p>
       <p>
-        When I'm not coding, I enjoy learning new technologies, designing UI/UX, and building personal projects.
+        When I am not coding, I enjoy learning new technologies, designing UI/UX, and building personal projects.
       </p>
     </section>
   );
