@@ -5,11 +5,9 @@ export default function HomePage() {
   return (
     <section className="py-12 px-4 bg-gray-50">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-          Hi, I'm Parth
-        </h1>
+        
         <p className="text-lg md:text-xl mb-6 text-gray-700">
-          I’m a frontend developer specializing in building modern, responsive, and fast web applications with React and Next.js.
+          I am a frontend developer specializing in building modern, responsive, and fast web applications with React and Next.js.
         </p>
         <div className="flex flex-wrap gap-4">
           <Link
