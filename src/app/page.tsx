@@ -12,10 +12,10 @@ export default function HomePage() {
         {/* Text Content */}
         <div className="md:w-1/2 space-y-6 text-center md:text-left">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
-            Hi, I'm Parth Khambhadiya
+            Hi, I am Parth Khambhadiya
           </h1>
           <p className="text-gray-700 leading-relaxed">
-            Hi, I’m Parth Khambhadiya, a passionate web developer based in Surat, Gujarat. With a B.Tech in Information Technology and a strong foundation in computer engineering, I specialize in creating dynamic and responsive web applications using HTML, CSS, JavaScript, PHP, Node.js, MySQL, MongoDB, and Bootstrap.
+            Hi, I am Parth Khambhadiya, a passionate web developer based in Surat, Gujarat. With a B.Tech in Information Technology and a strong foundation in computer engineering, I specialize in creating dynamic and responsive web applications using HTML, CSS, JavaScript, PHP, Node.js, MySQL, MongoDB, and Bootstrap.
           </p>
           <p className="text-gray-700 leading-relaxed">
             I have hands-on experience building projects ranging from student-focused web apps like Easy Exam Web, to e-commerce solutions such as a Shopping Cart Website, and even custom WordPress plugins like InstaPlug for seamless Instagram integration. I enjoy designing and implementing APIs, optimizing frontend performance, and crafting user-friendly interfaces.
