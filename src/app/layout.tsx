@@ -1,7 +1,7 @@
-// src/app/layout.tsx
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Sidebar from '@/components/Sidebar';
 
 export const metadata = {
   title: 'Parth Portfolio',
@@ -13,8 +13,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="flex flex-col min-h-screen bg-gray-50 text-gray-900">
         <Header />
-        {/* main grows to fill remaining space */}
-        <main className="flex-grow max-w-5xl mx-auto p-8">{children}</main>
+        <Sidebar /> {/* Client component */}
+        <main className="flex-grow w-full max-w-6xl mx-auto p-8">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
