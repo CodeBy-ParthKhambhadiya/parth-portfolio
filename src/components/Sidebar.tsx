@@ -49,7 +49,7 @@ export default function Sidebar() {
                 </span>
             </Link>
 
-            <Link href="/portfolio" className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 transition">
+            {/* <Link href="/portfolio" className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 transition">
                 <FaFileCode size={20} />
                 <span className="absolute left-full ml-2 px-3 py-1 rounded bg-gray-800 text-white opacity-0 group-hover:opacity-100 group-hover:left-14 whitespace-nowrap transition-all duration-300">
                     Portfolio
@@ -61,7 +61,7 @@ export default function Sidebar() {
                 <span className="absolute left-full ml-2 px-3 py-1 rounded bg-gray-800 text-white opacity-0 group-hover:opacity-100 group-hover:left-14 whitespace-nowrap transition-all duration-300">
                     Testimonials
                 </span>
-            </Link>
+            </Link> */}
 
             <Link
                 href="/blog"
