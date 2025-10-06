@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import heroImage from "../../public/images.jpeg";
+import heroImage from "../../public/Parth.jpeg";
 
 export default function HomePage() {
   return (
