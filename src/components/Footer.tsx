@@ -1,11 +1,49 @@
-// src/components/Footer.tsx
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+
 export default function Footer() {
   return (
-    <footer className="p-6 bg-gray-800 text-white text-center mt-10">
-      <p>&copy; 2025 Parth. All rights reserved.</p>
-      <p>
-        Built with <span className="font-semibold text-yellow-400">Next.js</span> & <span className="font-semibold text-yellow-400">Tailwind CSS</span>
-      </p>
+    <footer className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-gray-300 py-10 px-6 mt-16">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* Left Section */}
+        <div className="text-center md:text-left">
+          <h2 className="text-xl font-semibold text-white">© {new Date().getFullYear()} Parth Khambhadiya</h2>
+          <p className="text-sm text-gray-400">
+            Built with <span className="text-yellow-400 font-semibold">Next.js</span> &{' '}
+            <span className="text-yellow-400 font-semibold">Tailwind CSS</span>
+          </p>
+        </div>
+
+        {/* Social Links */}
+        <div className="flex gap-6 text-xl">
+          <a
+            href="https://github.com/CodeBy-ParthKhambhadiya"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-yellow-400 transition"
+          >
+            <FaGithub />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/parth-khambhadiya-214563224"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-yellow-400 transition"
+          >
+            <FaLinkedin />
+          </a>
+          <a
+            href="mailto:parthkhambhadiya2310@gmail.com"
+            className="hover:text-yellow-400 transition"
+          >
+            <FaEnvelope />
+          </a>
+        </div>
+      </div>
+
+      {/* Divider Line */}
+      <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
+        <p>Designed & Developed by <span className="text-yellow-400 font-semibold">Parth</span> 🚀</p>
+      </div>
     </footer>
   );
 }

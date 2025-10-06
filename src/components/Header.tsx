@@ -17,6 +17,8 @@ export default function Header() {
         <Link href="/" className={linkClasses('/')}>Home</Link>
         <Link href="/about" className={linkClasses('/about')}>About</Link>
         <Link href="/projects" className={linkClasses('/projects')}>Projects</Link>
+        <Link href="/resume" className={linkClasses('/resume')}>Resume</Link>
+        <Link href="/blog" className={linkClasses('/blog')}>Blog</Link> {/* Added Blog link */}
         <Link href="/contact" className={linkClasses('/contact')}>Contact</Link>
       </nav>
     </header>

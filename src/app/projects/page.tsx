@@ -1,54 +1,297 @@
 'use client';
 
-import React from "react";
+import React, { JSX, useState } from "react";
+import { FaPlus, FaMinus } from "react-icons/fa";
+import { AnimatePresence, motion } from 'framer-motion';
 
 interface Project {
   title: string;
   description: string;
+  details?: JSX.Element;
 }
 
-const projects: Project[] = [
-  {
-    title: "Portfolio Website",
-    description: "A personal portfolio to showcase my projects and skills, built with Next.js and Tailwind CSS.",
-  },
-  {
-    title: "E-commerce Store",
-    description: "An online store with product listings, shopping cart, and checkout functionality using React.",
-  },
-  {
-    title: "Easy Exam Web",
-    description: "A web application for students to take exams online, with dynamic scoring and analytics features.",
-  },
-  {
-    title: "InstaPlug WordPress Plugin",
-    description: "A custom WordPress plugin for seamless Instagram integration and content embedding on websites.",
-  },
-];
-
 export default function ProjectsPage() {
-  return (
-    <main className="flex flex-col items-center px-4 py-12 bg-gray-50">
-      <section className="w-full max-w-4xl text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 animate-fadeIn">
-          My Projects
-        </h1>
-        <p className="text-gray-700 mb-8 text-md md:text-lg animate-fadeIn">
-          Here are some of the projects I have worked on. Each project demonstrates my skills in frontend and backend development, showcasing my ability to build responsive and interactive web applications.
-        </p>
-      </section>
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-      <section className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-6">
-        {projects.map((project, index) => (
-          <article
+  const toggleOpen = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const projects: Project[] = [
+    {
+      title: "Portfolio Website",
+      description: "A personal portfolio to showcase my projects and skills, built with Next.js and Tailwind CSS.",
+      details: (
+        <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
+          <h4 className="font-semibold">1. Purpose</h4>
+          <p>- Showcases projects, skills, experience, and contact information.</p>
+          <p>- Creates an online presence and demonstrates frontend development skills.</p>
+
+          <h4 className="font-semibold mt-2">2. Frontend (Next.js + Tailwind CSS)</h4>
+          <ul className="list-disc list-inside">
+            <li>Next.js for React-based SSR/SSG.</li>
+            <li>TypeScript (optional) for type safety.</li>
+            <li>Tailwind CSS for responsive, modern design.</li>
+            <li>Responsive layouts for mobile, tablet, and desktop.</li>
+          </ul>
+          <p>Pages / Sections include: Home, About Me, Projects, Resume, Contact, Navigation.</p>
+
+          <h4 className="font-semibold mt-2">3. Features & Functionality</h4>
+          <ul className="list-disc list-inside">
+            <li>Dynamic Rendering: SSG/SSR pages.</li>
+            <li>Animations: Smooth scroll, hover effects, skill bars.</li>
+            <li>Contact Form: Validation + EmailJS API integration.</li>
+            <li>Performance & SEO: Fast load, meta tags, Open Graph tags.</li>
+            <li>Responsive Design: Works on all devices.</li>
+          </ul>
+
+          <h4 className="font-semibold mt-2">4. Tech Stack Summary</h4>
+          <ul className="list-disc list-inside">
+            <li>Frontend: Next.js, React</li>
+            <li>Styling: Tailwind CSS</li>
+            <li>Forms & Email: EmailJS or API integration</li>
+            <li>State Management: useState / useContext (if needed)</li>
+            <li>Animations: Framer Motion / CSS transitions</li>
+            <li>Deployment: Vercel</li>
+          </ul>
+        </div>
+      ),
+    },
+    {
+      title: "E-commerce Store",
+      description: "An online store with product listings, shopping cart, and checkout functionality using React.",
+      details: (
+        <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
+          <h4 className="font-semibold">1. Frontend (React + TypeScript + Redux)</h4>
+          <ul className="list-disc list-inside">
+            <li>React for building UI components.</li>
+            <li>TypeScript for type safety.</li>
+            <li>Redux Toolkit for state management (cart, products, orders).</li>
+            <li>React Router for navigation & protected routes.</li>
+            <li>Axios/fetch for API calls.</li>
+          </ul>
+
+          <h4 className="font-semibold mt-2">2. Backend (Node.js + PostgreSQL + Sequelize)</h4>
+          <ul className="list-disc list-inside">
+            <li>Node.js + Express.js for RESTful APIs.</li>
+            <li>Sequelize ORM with PostgreSQL for database.</li>
+            <li>APIs for users, products, cart, orders.</li>
+            <li>JWT-based authentication & role-based authorization.</li>
+            <li>Error handling middleware for consistent responses.</li>
+          </ul>
+
+          <h4 className="font-semibold mt-2">3. Features & Functionality</h4>
+          <ul className="list-disc list-inside">
+            <li>User features: Browse, cart, checkout, profile management.</li>
+            <li>Admin features: CRUD products, manage orders, view users.</li>
+            <li>Extra features: Search, pagination, payment integration, email notifications.</li>
+          </ul>
+
+          <h4 className="font-semibold mt-2">4. Tech Stack Summary</h4>
+          <ul className="list-disc list-inside">
+            <li>Frontend: React, TypeScript, Redux, React Router</li>
+            <li>Backend: Node.js, Express.js, Sequelize</li>
+            <li>Database: PostgreSQL</li>
+            <li>State Management: Redux Toolkit</li>
+            <li>API Calls: Axios / Fetch</li>
+            <li>Auth: JWT, bcrypt</li>
+          </ul>
+        </div>
+      ),
+    },
+    {
+      title: "Easy Exam Web",
+      description: "A web application for students to take exams online, with dynamic scoring and analytics features.",
+      details: (
+        <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
+          <h4 className="font-semibold">Project Overview</h4>
+          <p>
+            A full-stack web application to manage online exams with three panels:
+            <strong>Admin</strong>, <strong>Teacher</strong>, and <strong>Student</strong>.
+          </p>
+
+          <h4 className="font-semibold mt-2">1. Technology Stack</h4>
+          <ul className="list-disc list-inside">
+            <li>Frontend: HTML5, CSS3, JavaScript</li>
+            <li>Backend: PHP</li>
+            <li>Database: MySQL</li>
+            <li>Optional: Bootstrap for responsive design</li>
+          </ul>
+
+          <h4 className="font-semibold mt-2">2. Panels & Features</h4>
+
+          <strong>Admin Panel:</strong>
+          <ul className="list-disc list-inside ml-4">
+            <li>Manage teachers and students accounts (CRUD operations).</li>
+            <li>Create and manage exams, categories, and question banks.</li>
+            <li>View exam analytics and student performance reports.</li>
+          </ul>
+
+          <strong>Teacher Panel:</strong>
+          <ul className="list-disc list-inside ml-4">
+            <li>Create MCQ questions and assign them to exams.</li>
+            <li>Manage exam schedules and duration.</li>
+            <li>Monitor student submissions and scores.</li>
+          </ul>
+
+          <strong>Student Panel:</strong>
+          <ul className="list-disc list-inside ml-4">
+            <li>Take assigned exams within a time limit.</li>
+            <li>Real-time question navigation with next/previous buttons.</li>
+            <li>View instant results and analytics after submission.</li>
+          </ul>
+
+          <h4 className="font-semibold mt-2">3. Key Functionalities</h4>
+          <ul className="list-disc list-inside">
+            <li>Secure login for admin, teacher, and student roles.</li>
+            <li>CRUD operations for exams, questions, and users.</li>
+            <li>Dynamic scoring system with instant result calculation.</li>
+            <li>Responsive UI for desktop and mobile devices.</li>
+            <li>Search and filter questions or exams by category.</li>
+          </ul>
+
+          <h4 className="font-semibold mt-2">4. Tech Summary</h4>
+          <ul className="list-disc list-inside">
+            <li>Frontend: HTML, CSS, JavaScript, Bootstrap</li>
+            <li>Backend: PHP</li>
+            <li>Database: MySQL</li>
+            <li>Roles: Admin, Teacher, Student</li>
+            <li>Features: CRUD, Exam scheduling, Scoring & Analytics</li>
+          </ul>
+        </div>
+      ),
+    },
+    {
+      title: "InstaPlug WordPress Plugin",
+      description: "A custom WordPress plugin for seamless Instagram integration and content embedding on websites.",
+     details: (
+    <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
+      
+      <h4 className="font-semibold">1. Purpose</h4>
+      <ul className="list-disc list-inside ml-4">
+        <li>Fetch and display Instagram content (photos, reels) directly on a WordPress site.</li>
+        <li>Provide frontend display with custom CSS styling to match website theme.</li>
+        <li>Allow social login/connect and easy content management from WordPress backend.</li>
+      </ul>
+
+      <h4 className="font-semibold mt-2">2. Core Features</h4>
+      <strong>Instagram Integration</strong>
+      <ul className="list-disc list-inside ml-4">
+        <li>Fetch all photos and reels via Instagram Graph API.</li>
+        <li>Display posts in grid or carousel layouts.</li>
+        <li>Filter content by type or hashtags.</li>
+      </ul>
+      <strong>Facebook & Google Integration</strong>
+      <ul className="list-disc list-inside ml-4">
+        <li>Option to connect Facebook account and fetch posts.</li>
+        <li>Optional Google account integration for additional content or login.</li>
+      </ul>
+      <strong>Frontend Display</strong>
+      <ul className="list-disc list-inside ml-4">
+        <li>Fully customizable UI using custom CSS.</li>
+        <li>Responsive and mobile-friendly design.</li>
+        <li>Optional hover effects, lightbox view, and carousel sliders.</li>
+      </ul>
+      <strong>WordPress Admin Features</strong>
+      <ul className="list-disc list-inside ml-4">
+        <li>Plugin settings page in WordPress Dashboard.</li>
+        <li>Connect Instagram/Facebook/Google accounts securely.</li>
+        <li>Configure display settings: posts count, layout, styling options.</li>
+        <li>Cache content for performance optimization.</li>
+      </ul>
+
+      <h4 className="font-semibold mt-2">3. Backend (WordPress + GraphQL API)</h4>
+      <ul className="list-disc list-inside ml-4">
+        <li>Plugin folder in <code>wp-content/plugins/instaplug/</code>.</li>
+        <li>PHP backend handles plugin initialization, admin settings, API requests.</li>
+        <li>Secure OAuth tokens and API keys for Instagram/Facebook/Google.</li>
+        <li>GraphQL queries fetch user content and handle pagination.</li>
+        <li>Optional data transformation for frontend rendering.</li>
+      </ul>
+
+      <h4 className="font-semibold mt-2">4. Frontend (Plugin UI)</h4>
+      <ul className="list-disc list-inside ml-4">
+        <li>Shortcode <code>[instaplug_feed]</code> to display content in posts/pages.</li>
+        <li>Optional Gutenberg block for drag-and-drop placement.</li>
+        <li>React/JS frontend can fetch data via AJAX/REST endpoints without page reload.</li>
+        <li>Custom CSS for styling, responsive layouts, and theme compatibility.</li>
+        <li>Interactive features: hover effects, lightbox, carousel sliders (Swiper.js or Slick).</li>
+      </ul>
+
+      <h4 className="font-semibold mt-2">5. Tech Stack Summary</h4>
+      <ul className="list-disc list-inside ml-4">
+        <li>Backend: PHP, WordPress, GraphQL API</li>
+        <li>Frontend: HTML, CSS, JS, React (optional)</li>
+        <li>Plugins & Libraries: Swiper.js, Slick Carousel</li>
+        <li>Authentication: OAuth 2.0 for Instagram/Facebook/Google</li>
+        <li>Responsive design & custom CSS for theming</li>
+      </ul>
+    </div>
+  ),
+    },
+  ];
+
+ 
+return (
+  <main className="flex flex-col items-center px-10 py-20 bg-gradient-to-b from-gray-50 to-gray-100">
+    <section className="w-full max-w-7xl text-center mb-16">
+      <h1 className="text-5xl md:text-6xl font-extrabold mb-5 text-gray-900">My Projects</h1>
+      <p className="text-gray-700 text-lg md:text-xl">
+        Click <span className="font-semibold">+</span> to explore each project.
+      </p>
+    </section>
+
+    {/* Wider vertical list */}
+    <section className="w-full max-w-7xl space-y-12">
+      {projects.map((project, index) => {
+        const isOpen = openIndex === index;
+
+        return (
+          <motion.article
             key={index}
-            className="p-6 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-1 animate-fadeIn"
+            layout
+            onClick={() => toggleOpen(index)}
+            className={`bg-white rounded-3xl shadow-lg p-10 cursor-pointer transition-all duration-300 
+              ${isOpen ? 'scale-105 shadow-2xl z-10' : 'opacity-90 hover:opacity-100'}
+            `}
           >
-            <h3 className="text-2xl font-semibold mb-2 text-gray-900">{project.title}</h3>
-            <p className="text-gray-700 text-sm md:text-base">{project.description}</p>
-          </article>
-        ))}
-      </section>
-    </main>
-  );
+            <div className="flex justify-between items-start flex-wrap gap-4">
+              <div className="flex-1 min-w-[250px] pr-6">
+                <h3 className="text-3xl font-bold mb-3 text-gray-900">{project.title}</h3>
+                <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+                  {project.description}
+                </p>
+              </div>
+
+              {project.details && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); toggleOpen(index); }}
+                  className="ml-4 p-4 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg hover:from-blue-600 hover:to-indigo-600 transition cursor-pointer"
+                >
+                  {isOpen ? <FaMinus /> : <FaPlus />}
+                </button>
+              )}
+            </div>
+
+            <AnimatePresence>
+              {isOpen && project.details && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="mt-6 border-t border-gray-200 pt-6 text-gray-700 text-base md:text-lg leading-relaxed"
+                >
+                  {project.details}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.article>
+        );
+      })}
+    </section>
+  </main>
+);
+
+
 }
