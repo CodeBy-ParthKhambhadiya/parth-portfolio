@@ -65,16 +65,44 @@ export default function HomePage() {
         </div>
 
         {/* Image Content */}
-        <div className="md:w-1/2 mt-8 md:mt-0 flex justify-center relative">
-          <div className="w-64 h-64 md:w-96 md:h-96 relative rounded-full overflow-hidden shadow-2xl ring-4 ring-gray-300 animate-bounce">
-            <Image
-              src={heroImage}
-              alt="Parth Khambhadiya"
-              fill
-              className="object-cover"
-            />
+        <div className="md:w-1/2 mt-0 md:mt-0 flex justify-center relative">
+          {/* Container for string + image */}
+          <div className="flex flex-col items-center mt-4"> {/* mt-4 pushes slightly from top if needed */}
+
+            {/* The string */}
+            <div className="w-1 bg-gray-400 dark:bg-gray-200 h-48"></div> {/* adjust height */}
+            <div className="w-4 h-4 bg-gray-400 dark:bg-gray-200 rounded-full mb-2"></div> {/* small hook */}
+
+            {/* Flip Card */}
+            <div className="w-64 h-64 md:w-96 md:h-96 perspective">
+              <div className="relative w-full h-full transition-transform duration-[5.8s] transform-style-preserve-3d hover:rotate-y-180">
+
+                {/* Front Image */}
+                <div className="absolute w-full h-full backface-hidden rounded-full overflow-hidden shadow-2xl ring-4 ring-gray-300">
+                  <Image
+                    src={heroImage}
+                    alt="Front Image"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Back Image */}
+                <div className="absolute w-full h-full backface-hidden rotate-y-180 rounded-full overflow-hidden shadow-2xl ring-4 ring-gray-300">
+                  <Image
+                    src={heroImage} // replace with back image if desired
+                    alt="Back Image"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
+
+
 
       </section>
     </div>

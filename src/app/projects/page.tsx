@@ -6,6 +6,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 interface Project {
   title: string;
+  github?: string; // optional GitHub link
+  live?: string;
   description: string;
   details?: JSX.Element;
 }
@@ -18,10 +20,12 @@ export default function ProjectsPage() {
   };
 
   const projects: Project[] = [
-   
+
 
     {
       title: "Easy Exam Web",
+      github: "",
+      live: "",
       description: "A web application for students to take exams online, with dynamic scoring and analytics features.",
       details: (
         <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
@@ -83,7 +87,9 @@ export default function ProjectsPage() {
       ),
     },
     {
-      title: "E-commerce website",
+      title: "Shopping Platform",
+      github: "",
+      live: "",
       description: "A PHP-based online marketplace supporting sellers and buyers with full product management features.",
       details: (
         <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
@@ -121,8 +127,10 @@ export default function ProjectsPage() {
         </div>
       ),
     },
-      {
+    {
       title: "InstaPlug WordPress Plugin",
+      github: "",
+      live: "https://instaplug.app/embed-instagram-feed-in-wordpress",
       description: "A custom WordPress plugin for seamless Instagram integration and content embedding on websites.",
       details: (
         <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
@@ -189,8 +197,10 @@ export default function ProjectsPage() {
         </div>
       ),
     },
-     {
+    {
       title: "E-commerce Store",
+      github: "https://github.com/CodeBy-ParthKhambhadiya/ts-ecommerce-backend",
+      live: "",
       description: "An online store with product listings, shopping cart, and checkout functionality using React.",
       details: (
         <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
@@ -231,9 +241,11 @@ export default function ProjectsPage() {
         </div>
       ),
     },
-  
-     {
+
+    {
       title: "Portfolio Website",
+      github: "https://github.com/CodeBy-ParthKhambhadiya/parth-portfolio",
+      live: "https://parth-portfolio-eosin.vercel.app/",
       description: "A personal portfolio to showcase my projects and skills, built with Next.js and Tailwind CSS.",
       details: (
         <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
@@ -277,7 +289,7 @@ export default function ProjectsPage() {
   return (
     <main className="flex flex-col items-center px-10 py-20 bg-gradient-to-b from-gray-50 to-gray-100">
       <section className="w-full max-w-7xl text-center mb-16">
-                      <h1 className=" mb-1 text-4xl font-bold text-center">My Projects</h1>
+        <h1 className=" mb-1 text-4xl font-bold text-center">My Projects</h1>
         <p className="text-gray-700 text-lg md:text-xl">
           Click <span className="font-semibold">+</span> to explore each project.
         </p>
@@ -299,10 +311,38 @@ export default function ProjectsPage() {
             >
               <div className="flex justify-between items-start flex-wrap gap-4">
                 <div className="flex-1 min-w-[250px] pr-6">
-                  <h3 className="text-3xl font-bold mb-3 text-gray-900">{project.title}</h3>
-                  <p className="text-gray-600 text-base md:text-lg leading-relaxed">
-                    {project.description}
-                  </p>
+
+                  {/* Project Title */}
+                  <h3 className="text-2xl md:text-3xl font-bold mb-3 text-bg-gray-800 ">
+                    {project.title}
+                  </h3>
+
+
+                  {/* GitHub & Live Links */}
+                  <div className="mt-2 flex gap-3 flex-wrap">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition"
+                      >
+                        GitHub
+                      </a>
+                    )}
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+                      >
+                        Live Demo
+                      </a>
+                    )}
+                  </div>
+
+
                 </div>
 
                 {project.details && (

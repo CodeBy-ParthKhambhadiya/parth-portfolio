@@ -50,3 +50,35 @@ body {
   transform: translateY(-5px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
+@keyframes flipOnce {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+.hover-flip-once:hover {
+  animation: flipOnce 3.8s forwards; /* slower flip */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+.perspective {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.hover\:rotate-y-180:hover {
+  transform: rotateY(180deg);
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
