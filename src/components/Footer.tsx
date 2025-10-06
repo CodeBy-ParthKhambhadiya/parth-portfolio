@@ -44,7 +44,7 @@ export default function Footer() {
       {/* Divider Line */}
       <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
         <p>
-          Designed & Developed by <span className="font-semibold text-blue-400">Parth</span> 🚀
+          Designed & Developed by <span className="font-semibold text-blue-400">Parth</span> | All rights reserved.
         </p>
       </div>
     </footer>

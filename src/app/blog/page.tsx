@@ -99,7 +99,7 @@ export default function BlogPage() {
             <section className="w-full max-w-5xl text-center">
                       <h1 className=" mb-1 text-4xl font-bold text-center">My Blog</h1>
     <p className="text-gray-700 text-lg md:text-xl mb-16">
-                    Thoughts, tutorials, and experiences from my dev journey 🚀
+                    Thoughts, tutorials, and experiences from my dev journey 
                 </p>
                 {/* <h1 className="text-5xl font-extrabold mb-4 text-gray-900"></h1> */}
             
