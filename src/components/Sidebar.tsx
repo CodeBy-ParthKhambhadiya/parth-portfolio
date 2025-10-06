@@ -10,8 +10,6 @@ import {
     FaProjectDiagram,
     FaEnvelopeOpen,
     FaFileAlt,
-    FaFileCode,
-    FaStar,
     FaBlog
 } from "react-icons/fa";
 import Link from "next/link";
