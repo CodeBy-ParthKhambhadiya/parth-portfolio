@@ -1,5 +1,7 @@
 // app/contact/page.tsx
 export default function ContactPage() {
+  console.log("Contact page rendered");
+  
   return (
     <section>
       <h2 className="text-4xl font-bold mb-4">Contact Me</h2>
