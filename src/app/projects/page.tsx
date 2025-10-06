@@ -277,7 +277,7 @@ export default function ProjectsPage() {
   return (
     <main className="flex flex-col items-center px-10 py-20 bg-gradient-to-b from-gray-50 to-gray-100">
       <section className="w-full max-w-7xl text-center mb-16">
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-5 text-gray-900">My Projects</h1>
+                      <h1 className=" mb-1 text-4xl font-bold text-center">My Projects</h1>
         <p className="text-gray-700 text-lg md:text-xl">
           Click <span className="font-semibold">+</span> to explore each project.
         </p>

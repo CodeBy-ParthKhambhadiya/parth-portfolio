@@ -8,8 +8,9 @@ export default function Footer() {
         <div className="text-center md:text-left">
           <h2 className="text-xl font-semibold text-white">© {new Date().getFullYear()} Parth Khambhadiya</h2>
           <p className="text-sm text-gray-400">
-            Built with <span className="text-yellow-400 font-semibold">Next.js</span> &{' '}
-            <span className="text-yellow-400 font-semibold">Tailwind CSS</span>
+            Built with{' '}
+            <span className="font-semibold text-blue-400">Next.js</span> &{' '}
+            <span className="font-semibold text-indigo-400">Tailwind CSS</span>
           </p>
         </div>
 
@@ -19,7 +20,7 @@ export default function Footer() {
             href="https://github.com/CodeBy-ParthKhambhadiya"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-yellow-400 transition"
+            className="hover:text-blue-400 transition-colors duration-300"
           >
             <FaGithub />
           </a>
@@ -27,13 +28,13 @@ export default function Footer() {
             href="https://www.linkedin.com/in/parth-khambhadiya-214563224"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-yellow-400 transition"
+            className="hover:text-blue-400 transition-colors duration-300"
           >
             <FaLinkedin />
           </a>
           <a
             href="mailto:parthkhambhadiya2310@gmail.com"
-            className="hover:text-yellow-400 transition"
+            className="hover:text-blue-400 transition-colors duration-300"
           >
             <FaEnvelope />
           </a>
@@ -42,7 +43,9 @@ export default function Footer() {
 
       {/* Divider Line */}
       <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
-        <p>Designed & Developed by <span className="text-yellow-400 font-semibold">Parth</span> 🚀</p>
+        <p>
+          Designed & Developed by <span className="font-semibold text-blue-400">Parth</span> 🚀
+        </p>
       </div>
     </footer>
   );

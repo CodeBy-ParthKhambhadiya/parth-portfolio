@@ -96,11 +96,13 @@ const blogPosts = [
 export default function BlogPage() {
     return (
         <main className="flex flex-col items-center pl-12 pr-0 py-16 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen">
-            <section className="w-full max-w-5xl text-center mb-14">
-                <h1 className="text-5xl font-extrabold mb-4 text-gray-900">My Blog</h1>
-                <p className="text-gray-700 text-lg md:text-xl">
+            <section className="w-full max-w-5xl text-center">
+                      <h1 className=" mb-1 text-4xl font-bold text-center">My Blog</h1>
+    <p className="text-gray-700 text-lg md:text-xl mb-16">
                     Thoughts, tutorials, and experiences from my dev journey 🚀
                 </p>
+                {/* <h1 className="text-5xl font-extrabold mb-4 text-gray-900"></h1> */}
+            
             </section>
 
             <section>

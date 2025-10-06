@@ -71,12 +71,12 @@ export default function Sidebar() {
                 </span>
             </Link>
 
-            <Link href="/contact" className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 transition">
+            {/* <Link href="/contact" className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 transition">
                 <FaEnvelopeOpen size={20} />
                 <span className="absolute left-full ml-2 px-3 py-1 rounded bg-gray-800 text-white opacity-0 group-hover:opacity-100 group-hover:left-14 whitespace-nowrap transition-all duration-300">
                     Contact
                 </span>
-            </Link>
+            </Link> */}
 
             <hr className="border-gray-300 my-2" />
 

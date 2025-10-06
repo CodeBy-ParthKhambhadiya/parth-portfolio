@@ -27,7 +27,7 @@ export default function AboutTimeline() {
   const renderMilestone = (m: Milestone) => (
     <div key={m.year} className="mb-12 relative">
       <div className="bg-white p-6 rounded-xl shadow-lg relative">
-        <span className="absolute top-1/2 -left-4 transform -translate-y-1/2 w-8 h-8 bg-blue-500 rounded-full border-4 border-white"></span>
+        <span className="absolute top-1/2 -left-4 transform -translate-y-1/2 w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full border-4 border-white"></span>
         <h2 className="text-xl font-semibold text-gray-900">{m.year}</h2>
         <h3 className="text-lg font-medium text-gray-700">{m.title}</h3>
         <p className="text-gray-600 mt-2">{m.description}</p>

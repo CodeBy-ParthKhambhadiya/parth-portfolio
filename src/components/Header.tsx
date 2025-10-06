@@ -3,23 +3,29 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Header() {
   const pathname = usePathname();
 
   const linkClasses = (path: string) =>
-    `mx-3 hover:text-yellow-400 ${pathname === path ? 'font-bold underline' : ''}`;
+    `mx-3 px-2 py-1 rounded-md transition-all duration-300 ${pathname === path
+      ? 'font-bold  from-blue-500 to-indigo-500 bg-gradient-to-r text-white'
+      : 'text-gray-200 dark:text-gray-300 hover:text-yellow-400 dark:hover:text-yellow-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-500 hover:text-white'
+    }`;
 
   return (
-    <header className="p-6 bg-gray-900 text-white flex justify-between items-center">
-      <h1 className="text-2xl font-bold">Parth Portfolio</h1>
-      <nav>
+    <header className="p-6 bg-gray-900 dark:bg-gray-800 text-white flex justify-between items-center shadow-md">
+
+      <h1 className="text-2xl font-bold">
+        <Link href="/">Parth Portfolio</Link>
+      </h1>
+      <nav className="flex items-center">
         <Link href="/" className={linkClasses('/')}>Home</Link>
         <Link href="/about" className={linkClasses('/about')}>About</Link>
         <Link href="/projects" className={linkClasses('/projects')}>Projects</Link>
         <Link href="/resume" className={linkClasses('/resume')}>Resume</Link>
-        <Link href="/blog" className={linkClasses('/blog')}>Blog</Link> {/* Added Blog link */}
-        <Link href="/contact" className={linkClasses('/contact')}>Contact</Link>
+        <Link href="/blog" className={linkClasses('/blog')}>Blog</Link> 
       </nav>
     </header>
   );
