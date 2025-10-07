@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
 
 interface Post {
     title: string;
@@ -12,10 +13,10 @@ interface Post {
 
 
 const posts: Record<string, Post> = {
-  'wordpress-plugin-graphql': {
-    title: 'Building a Custom WordPress Plugin with GraphQL',
-    date: '2025-09-20',
-    content: `
+    'wordpress-plugin-graphql': {
+        title: 'Building a Custom WordPress Plugin with GraphQL',
+        date: '2025-09-20',
+        content: `
 In this post, I explain how I built a custom WordPress plugin that integrates Instagram content using the GraphQL API. 
 
 I started by exploring the WordPress plugin architecture and setting up a development environment. 
@@ -29,12 +30,12 @@ Key steps included:
 
 By the end, I had a fully functional plugin capable of displaying dynamic Instagram content within WordPress, complete with frontend customizations and social media connectivity.
     `,
-  },
+    },
 
-  'why-nextjs': {
-    title: 'Why I Switched My Portfolio to Next.js',
-    date: '2025-08-10',
-    content: `
+    'why-nextjs': {
+        title: 'Why I Switched My Portfolio to Next.js',
+        date: '2025-08-10',
+        content: `
 This post dives into my decision to migrate my personal portfolio from React to Next.js for enhanced performance and SEO. 
 
 Challenges I faced in React included:
@@ -49,12 +50,12 @@ Benefits of switching to Next.js:
 
 I also implemented new features such as dynamic routing, improved UI responsiveness, and better project organization, making the portfolio faster, more maintainable, and more professional.
     `,
-  },
+    },
 
-  'tailwind-css-tips': {
-    title: 'Mastering Tailwind CSS for Modern UI Design',
-    date: '2025-07-05',
-    content: `
+    'tailwind-css-tips': {
+        title: 'Mastering Tailwind CSS for Modern UI Design',
+        date: '2025-07-05',
+        content: `
 In this article, I share my tips and tricks for building modern, responsive UIs using Tailwind CSS. 
 
 I cover:
@@ -66,12 +67,12 @@ I cover:
 I also include real-world examples, like creating a fully responsive portfolio card and navigation bar using Tailwind utilities. 
 By mastering Tailwind CSS, I was able to speed up my development workflow and maintain design consistency across projects.
     `,
-  },
+    },
 
-  'mcq-exam-js': {
-    title: 'Creating Interactive MCQ Exams with JavaScript',
-    date: '2025-06-15',
-    content: `
+    'mcq-exam-js': {
+        title: 'Creating Interactive MCQ Exams with JavaScript',
+        date: '2025-06-15',
+        content: `
 This tutorial walks through creating a multiple-choice exam system using pure JavaScript.
 
 Key topics include:
@@ -83,12 +84,12 @@ Key topics include:
 I also explain challenges such as managing state between questions and optimizing performance for large question sets. 
 By the end, you can build a fully interactive MCQ exam app that works directly in the browser without any backend.
     `,
-  },
+    },
 
-  'vercel-deployment': {
-    title: 'Deploying Your Portfolio on Vercel',
-    date: '2025-05-30',
-    content: `
+    'vercel-deployment': {
+        title: 'Deploying Your Portfolio on Vercel',
+        date: '2025-05-30',
+        content: `
 Learn how to deploy React or Next.js projects on Vercel for free, with seamless integration.
 
 Steps covered:
@@ -99,12 +100,12 @@ Steps covered:
 
 I also share tips for troubleshooting common deployment issues, like build errors and incorrect routing. After following this process, your portfolio or web app is live and production-ready in minutes.
     `,
-  },
+    },
 
-  'emailjs-contact-form': {
-    title: 'Integrating EmailJS for Contact Forms',
-    date: '2025-05-10',
-    content: `
+    'emailjs-contact-form': {
+        title: 'Integrating EmailJS for Contact Forms',
+        date: '2025-05-10',
+        content: `
 This guide explains how to add a fully functional contact form to your website using EmailJS.
 
 Covered topics:
@@ -115,12 +116,12 @@ Covered topics:
 
 I also demonstrate sending attachments and customizing email templates. By the end, you can have a secure, fully operational contact form integrated into your site.
     `,
-  },
+    },
 
-  'react-resume-design': {
-    title: 'Designing Resume Pages with React',
-    date: '2025-04-25',
-    content: `
+    'react-resume-design': {
+        title: 'Designing Resume Pages with React',
+        date: '2025-04-25',
+        content: `
 In this article, I discuss creating interactive resume pages using React.
 
 Highlights include:
@@ -131,12 +132,12 @@ Highlights include:
 
 I provide practical examples and code snippets to make resumes both functional and visually appealing.
     `,
-  },
+    },
 
-  'website-animations': {
-    title: 'Adding Animations to Your Website',
-    date: '2025-04-05',
-    content: `
+    'website-animations': {
+        title: 'Adding Animations to Your Website',
+        date: '2025-04-05',
+        content: `
 Learn how to make your website more dynamic using animations.
 
 Topics include:
@@ -147,12 +148,12 @@ Topics include:
 
 I include examples like animated buttons, fading content sections, and smooth page transitions to enhance user engagement.
     `,
-  },
+    },
 
-  'graphql-wordpress-intro': {
-    title: 'Getting Started with GraphQL in WordPress',
-    date: '2025-03-20',
-    content: `
+    'graphql-wordpress-intro': {
+        title: 'Getting Started with GraphQL in WordPress',
+        date: '2025-03-20',
+        content: `
 An introduction to GraphQL in WordPress.
 
 I cover:
@@ -163,12 +164,12 @@ I cover:
 
 By learning GraphQL, you can fetch only the data you need, improving site performance and reducing server load.
     `,
-  },
+    },
 
-  'responsive-design-tips': {
-    title: 'Responsive Design Best Practices',
-    date: '2025-03-05',
-    content: `
+    'responsive-design-tips': {
+        title: 'Responsive Design Best Practices',
+        date: '2025-03-05',
+        content: `
 This post shares essential techniques for responsive web design.
 
 Covered topics:
@@ -179,13 +180,13 @@ Covered topics:
 
 Following these practices ensures your website looks great on all devices and provides a better user experience.
     `,
-  },
+    },
 
-  // Learning journey posts with expanded content
-  'ielts-6-month-journey': {
-    title: '6-Month IELTS Preparation Journey',
-    date: '2025-02-01',
-    content: `
+    // Learning journey posts with expanded content
+    'ielts-6-month-journey': {
+        title: '6-Month IELTS Preparation Journey',
+        date: '2025-02-01',
+        content: `
 Documenting my 6-month journey preparing for the IELTS exam, strategies I used, daily routines, and tips for achieving a high score.
 
 During this period, I also dedicated my free time to learning web development. I focused on:
@@ -196,12 +197,12 @@ During this period, I also dedicated my free time to learning web development. I
 I also practiced time management and balancing language learning with coding exercises. 
 This dual approach helped me stay productive, learn effectively, and improve both my English skills and programming knowledge simultaneously.
     `,
-  },
+    },
 
-  'react-node-mongo-2-months': {
-    title: 'Learning React, Node.js, and MongoDB in 2 Months',
-    date: '2025-08-01',
-    content: `
+    'react-node-mongo-2-months': {
+        title: 'Learning React, Node.js, and MongoDB in 2 Months',
+        date: '2025-08-01',
+        content: `
 I dedicated 2 months to learning full-stack development using React, Node.js, and MongoDB.
 
 During this period:
@@ -212,12 +213,12 @@ During this period:
 
 By the end, I was confident in building full-stack applications, connecting React frontend with Node.js backend and MongoDB database efficiently.
     `,
-  },
+    },
 
-  'typescript-nextjs-1-month': {
-    title: '1-Month TypeScript and Next.js Deep Dive',
-    date: '2025-10-01',
-    content: `
+    'typescript-nextjs-1-month': {
+        title: '1-Month TypeScript and Next.js Deep Dive',
+        date: '2025-10-01',
+        content: `
 Spent one month mastering TypeScript and Next.js to improve code quality, scalability, and performance.
 
 Key activities:
@@ -228,12 +229,12 @@ Key activities:
 
 This month helped me write cleaner, more maintainable code and understand how Next.js improves web performance and scalability.
     `,
-  },
+    },
 
-  'nextjs-live-project-4-months': {
-    title: '4-Month Live Project with Next.js',
-    date: '2025-11-01',
-    content: `
+    'nextjs-live-project-4-months': {
+        title: '4-Month Live Project with Next.js',
+        date: '2025-11-01',
+        content: `
 Worked on a real-world, production-level project for 4 months using Next.js.
 
 Highlights:
@@ -244,7 +245,7 @@ Highlights:
 
 This project consolidated my knowledge from previous months and gave me practical experience with full-stack Next.js development.
     `,
-  },
+    },
 };
 
 export default function BlogPost({ params }: { params: { slug: string } }) {
@@ -262,9 +263,10 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             {/* Back button */}
             <Link
                 href="/blog"
-                className="inline-block mb-6 px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
+                className="inline-flex items-center mb-6 px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
             >
-                ← Back
+                <FaArrowLeft className="mr-2" />
+                Back
             </Link>
 
             {/* Post header */}
@@ -277,14 +279,9 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             </article>
 
             {/* Read More / Show Less button */}
-            {post.content.split('\n').length > 2 && (
-                <button
-                    onClick={() => setShowMore(!showMore)}
-                    className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition text-center"
-                >
-                    {showMore ? 'Show Less' : 'Read More'}
-                </button>
-            )}
+            <p className="text-gray-700 text-base md:text-lg whitespace-pre-line">
+                {post.content}
+            </p>
         </main>
     );
 }

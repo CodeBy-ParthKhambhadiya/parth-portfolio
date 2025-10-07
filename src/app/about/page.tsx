@@ -7,15 +7,47 @@ interface Milestone {
   title: string;
   description: string;
 }
-
 const milestones: Milestone[] = [
-  { year: '2018', title: 'Learned Basics', description: 'Learned basic C, C++, Java, HTML, and CSS.' },
-  { year: '2019', title: 'Advanced Java & DBMS', description: 'Gained advanced knowledge of Java and Database Management Systems (MySQL, Oracle).' },
-  { year: '2020', title: 'PHP & JavaScript', description: 'Learned PHP for server-side programming and JavaScript for dynamic web development. Built basic CRUD applications with PHP and MySQL.' },
-  { year: '2021', title: 'Advanced PHP & MySQL', description: 'Deepened PHP skills and built complex web applications using PHP and MySQL, including database design, queries, and form handling.' },
-  { year: '2022', title: 'Python Basics', description: 'Started learning Python programming.' },
-  { year: '2024', title: 'Internship at Logicwind', description: 'Worked as PHP and WordPress developer. Built InstaPlug WordPress plugin using GraphQL APIs in 6 months, integrated PHP backend with MySQL database.' },
-  { year: '2025', title: 'Internship & Full-time Job at HMR Technology', description: 'Worked as a full-stack developer. Learned React, TypeScript, Next.js, and PostgreSQL while working on live projects. Continued using PHP & MySQL for backend tasks when needed.' },
+   {
+    year: '2018',
+    title: 'Learned Basics',
+    description: 'During college, covered fundamental programming languages: C, C++, Java, HTML, and CSS. Practiced basic coding exercises and small projects to strengthen problem-solving skills.'
+  },
+  {
+    year: '2019',
+    title: 'Advanced Java & DBMS',
+    description: 'In college, gained advanced knowledge in Java and Database Management Systems (MySQL, Oracle). Completed practical assignments and mini-projects to apply concepts in real-world scenarios.'
+  },
+  {
+    year: '2020',
+    title: 'PHP & JavaScript',
+    description: 'Learned PHP for backend development and JavaScript for dynamic web applications. Built basic CRUD applications using PHP & MySQL. Focused on integrating frontend and backend functionality through practical college projects.'
+  },
+  {
+    year: '2021',
+    title: 'Advanced PHP & MySQL',
+    description: 'Developed complex web applications during college, emphasizing database design, queries, and form handling with PHP & MySQL. Completed larger projects, including multi-page websites and functional web apps, gaining hands-on experience.'
+  },
+  {
+    year: '2022',
+    title: 'Python Basics',
+    description: 'During college, learned Python from scratch, covering all fundamental concepts. Performed practical exercises and small projects to strengthen understanding of programming basics and scripting.'
+  },
+  {
+    year: '2022',
+    title: 'Python Basics',
+    description: 'During college, learned Python from scratch, covering all fundamental concepts. Performed practical exercises and small projects to strengthen understanding of programming basics and scripting.'
+  },
+  {
+    year: '2024',
+    title: 'Internship at Logicwind',
+    description: 'Worked as a PHP & WordPress developer. Built the InstaPlug WordPress plugin using GraphQL APIs, integrating PHP backend with MySQL database over 6 months.'
+  },
+  {
+    year: '2025',
+    title: 'Internship & Full-time at HMR Technology',
+    description: 'Full-stack developer role: React, TypeScript, Next.js, PostgreSQL, and MongoDB. Currently working on live projects for the last 4 months, contributing to both frontend and backend development.'
+  }
 ];
 
 export default function AboutTimeline() {
