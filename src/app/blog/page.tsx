@@ -91,41 +91,66 @@ const blogPosts = [
         slug: 'nextjs-live-project-4-months',
     },
 ];
+function generateGradient(existingGradients: string[]): string {
+    let gradient = "";
+    do {
+        // Generate two darker/mid-tone colors suitable for white text
+        const randomColor = () => {
+            const r = Math.floor(Math.random() * 131) + 50; // 50–180
+            const g = Math.floor(Math.random() * 131) + 50;
+            const b = Math.floor(Math.random() * 131) + 50;
+            return `rgb(${r}, ${g}, ${b})`;
+        };
 
+        gradient = `linear-gradient(to bottom, ${randomColor()}, ${randomColor()})`;
+    } while (existingGradients.includes(gradient));
+
+    return gradient;
+}
 export default function BlogPage() {
+    const usedGradients: string[] = [];
+
     return (
-        <main className="flex flex-col items-center pl-12 pr-0 py-16 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen">
-            <section className="w-full max-w-5xl text-center">
-                <h1 className="mb-1 text-4xl font-bold text-center">My Blog</h1>
-                <p className="text-gray-700 text-lg md:text-xl mb-16">
-                    Thoughts, tutorials, and experiences from my dev journey 
+        <main className="flex flex-col items-center px-0 py-16 bg-gray-50 min-h-screen">
+            <section className="w-full max-w-6xl text-center mb-12">
+                <h1 className="text-4xl font-bold mb-2">My Blog</h1>
+                <p className="text-gray-700 text-lg md:text-xl">
+                    Thoughts, tutorials, and experiences from my dev journey
                 </p>
             </section>
 
-            <section>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-                    {blogPosts.map((post, index) => (
-                        <Link
-                            key={index}
-                            href={`/blog/${post.slug}`}
-                            className="block"
-                        >
-                            <motion.article
-                                initial={{ opacity: 0, y: 40 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.2 }}
-                                className="bg-white p-6 rounded-3xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 flex flex-col cursor-pointer"
-                            >
-                                <h2 className="text-2xl font-bold mb-2 text-gray-900">{post.title}</h2>
-                                <p className="text-gray-500 text-sm mb-3">{post.date}</p>
+            <section className="w-full max-w-6xl">
+                <div className="columns-1 sm:columns-2 lg:columns-3 gap-0">
+                    {blogPosts.map((post, index) => {
+                        const minHeight = 150;
+                        const maxHeight = 600;
+                        const randomHeight =
+                            Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
 
-                                {/* Summary with 4-line clamp */}
-                                <p className="text-gray-700 mb-4 flex-1 line-clamp-4">
-                                    {post.summary}
-                                </p>
-                            </motion.article>
-                        </Link>
-                    ))}
+                        // Generate a unique gradient
+                        const gradient = generateGradient(usedGradients);
+                        usedGradients.push(gradient);
+
+                        return (
+                            <Link key={index} href={`/blog/${post.slug}`}>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    style={{
+                                        height: `${randomHeight}px`,
+                                        background: gradient,
+                                    }}
+                                    className="break-inside-avoid mb-0 relative cursor-pointer flex items-end p-2 shadow-md hover:shadow-xl transition-shadow duration-300"
+                                >
+                                    <div className="text-white">
+                                        <h2 className="text-lg font-bold">{post.title}</h2>
+                                        <p className="text-sm">{post.date}</p>
+                                    </div>
+                                </motion.div>
+                            </Link>
+                        );
+                    })}
                 </div>
             </section>
         </main>

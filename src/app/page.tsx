@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import heroImage from "../../public/Parth.jpeg";
 
 export default function HomePage() {
+  const heroImage = "https://res.cloudinary.com/dbxwglui1/image/upload/v1752837200/h6agsx12t7qp7ho9xy3y.jpg";
+
   return (
     <div className="flex flex-col items-center justify-center bg-gray-50 px-4 py-12">
 

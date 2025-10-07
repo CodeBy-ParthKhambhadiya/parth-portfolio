@@ -9,7 +9,7 @@ import Link from "next/link";
 declare module "react-slick";
 import Slider from "react-slick";
 import Image from "next/image";
-import { instaplugProjectImages, sliderSettings } from "@/components/Project/images";
+import { instaplugProjectImages,eCommerceProjectImages, sliderSettings } from "@/components/Project/images";
 
 
 export interface Project {
@@ -211,6 +211,7 @@ export const projects: Project[] = [
     title: "E-commerce",
     slug: "e-commerce",
     github: "",
+    images: eCommerceProjectImages,
     important: true,
     githubLinks: [
 
