@@ -8,6 +8,9 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { GiCelebrationFire } from 'react-icons/gi';
 import Link from 'next/link';
 import { FiArrowLeft } from 'react-icons/fi';
+import { instaplugProjectImages, sliderSettings } from "@/components/Project/images";
+import Image from "next/image";
+import Slider from 'react-slick';
 
 interface ProjectProps {
     params: {
@@ -35,6 +38,47 @@ export default function ProjectPage({ params }: ProjectProps) {
                     <FiArrowLeft className="w-5 h-5" />
                     Back
                 </Link>
+                <Slider
+                    {...sliderSettings}
+                    slidesToShow={1}
+                    slidesToScroll={1}
+                    dots={false}
+                >
+                    {project.images && project.images.length > 0
+                        ? project.images.reduce((acc: string[][], img, i) => {
+                            // group images into chunks of 1 per slide
+                            if (i % 1 === 0) acc.push([img]);
+                            else acc[acc.length - 1].push(img);
+                            return acc;
+                        }, []).map((group, index) => (
+                            <div key={index}   className="flex flex-col gap-4 items-center  rounded-xl overflow-hidden "
+>
+                                {group.map((img, idx) => (
+                                    <div
+                                        key={idx}
+                                        className="w-[px] h-[px] flex items-center justify-center overflow-hidden"
+                                    >
+                                        <Image
+                                            src={img}
+                                            alt={`${project.title} screenshot ${idx + 1}`}
+                                            width={815}
+                                            height={500}
+                                            className="object-cover"
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        ))
+                        : (
+                            <div className="flex flex-col gap-4 items-center">
+                                {/* Placeholder empty slide to keep space */}
+                                <div className="w-[414px] h-[242px] flex items-center justify-center border-2 border-gray-400 rounded-lg">
+                                    <p className="text-gray-500 text-sm">No Image</p>
+                                </div>
+                            </div>
+                        )}
+                </Slider>
+
 
                 {/* Project Title */}
                 <div className="flex items-center gap-3 mb-4 flex-wrap">

@@ -6,10 +6,15 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { FaGithub } from "react-icons/fa";
 import { GiCelebrationFire } from "react-icons/gi";
 import Link from "next/link";
+declare module "react-slick";
+import Slider from "react-slick";
+import Image from "next/image";
+import { instaplugProjectImages, sliderSettings } from "@/components/Project/images";
 
 
 export interface Project {
   title: string;
+  images?: string[]; // ✅ add this
   slug: string; // ✅ add this
   github?: string;
   live?: string;
@@ -132,6 +137,7 @@ export const projects: Project[] = [
   {
     title: "InstaPlug WordPress Plugin",
     slug: "instaplug-wordpress-plugin",
+    images: instaplugProjectImages,
     github: "",
     important: true,
     live: "https://instaplug.app/embed-instagram-feed-in-wordpress",
@@ -342,6 +348,7 @@ export const projects: Project[] = [
   },
 ];
 export default function ProjectsPage() {
+
   return (
     <main className="flex flex-col items-center px-6 sm:px-10 py-16 bg-gradient-to-b from-gray-50 to-gray-100">
       <section className="w-full max-w-7xl text-center mb-12">
@@ -364,11 +371,46 @@ export default function ProjectsPage() {
               className="block"
             >
               {/* Image / Color block */}
-              <div className="w-full h-48 sm:h-60 md:h-72 bg-gray-300 ">
-                {/* {project.important && (
-                  <GiCelebrationFire className=" w-6 h-6 text-yellow-400" />
-                )} */}
-              </div>
+              <Slider
+                {...sliderSettings}
+                slidesToShow={1}       // one slide visible at a time
+                slidesToScroll={1}     // scroll one slide at a time
+                arrows={true}          // show arrows
+              >
+                {project.images && project.images.length > 0
+                  ? project.images.reduce((acc: string[][], img, i) => {
+                    // group images into chunks of 3 per slide (change 3 as needed)
+                    if (i % 1 === 0) acc.push([img]);
+                    else acc[acc.length - 1].push(img);
+                    return acc;
+                  }, []).map((group, index) => (
+                    <div key={index} className="flex flex-col gap-4 items-center">
+                      {group.map((img, idx) => (
+                        <div
+                          key={idx}
+                          className="w-[414px] h-[234px] flex items-center justify-center"
+                        >
+                          <Image
+                            src={img}
+                            alt={`${project.title} screenshot ${idx + 1}`}
+                            width={414}
+                            height={234}
+                            className="object-cover rounded-lg"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ))
+                  : (
+                    <div className="flex flex-col gap-4 items-center">
+                      {/* Placeholder empty slide to keep space */}
+                      <div className="w-[414px] h-[242px] flex items-center justify-center">
+                        <p className="text-gray-500 text-sm">No Image</p>
+                      </div>
+                    </div>
+                  )}
+              </Slider>
+
 
               {/* Title, description */}
               <div className="p-4 bg-white dark:bg-gray-800 relative">

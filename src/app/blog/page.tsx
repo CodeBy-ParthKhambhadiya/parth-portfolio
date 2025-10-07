@@ -92,49 +92,42 @@ const blogPosts = [
     },
 ];
 
-
 export default function BlogPage() {
     return (
         <main className="flex flex-col items-center pl-12 pr-0 py-16 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen">
             <section className="w-full max-w-5xl text-center">
-                      <h1 className=" mb-1 text-4xl font-bold text-center">My Blog</h1>
-    <p className="text-gray-700 text-lg md:text-xl mb-16">
+                <h1 className="mb-1 text-4xl font-bold text-center">My Blog</h1>
+                <p className="text-gray-700 text-lg md:text-xl mb-16">
                     Thoughts, tutorials, and experiences from my dev journey 
                 </p>
-                {/* <h1 className="text-5xl font-extrabold mb-4 text-gray-900"></h1> */}
-            
             </section>
 
             <section>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
                     {blogPosts.map((post, index) => (
-                        <motion.article
+                        <Link
                             key={index}
-                            initial={{ opacity: 0, y: 40 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.2 }}
-                            className="bg-white p-6 rounded-3xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 flex flex-col"
+                            href={`/blog/${post.slug}`}
+                            className="block"
                         >
-                            <h2 className="text-2xl font-bold mb-2 text-gray-900">{post.title}</h2>
-                            <p className="text-gray-500 text-sm mb-3">{post.date}</p>
-
-                            {/* Summary with 4-line clamp */}
-                            <p className="text-gray-700 mb-4 flex-1 line-clamp-4">
-                                {post.summary}
-                            </p>
-
-                            {/* Right-aligned button without extra wrapper */}
-                            <Link
-                                href={`/blog/${post.slug}`}
-                                className="mt-auto w-full px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition text-center"
+                            <motion.article
+                                initial={{ opacity: 0, y: 40 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.2 }}
+                                className="bg-white p-6 rounded-3xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 flex flex-col cursor-pointer"
                             >
-                                Read More
-                            </Link>
-                        </motion.article>
+                                <h2 className="text-2xl font-bold mb-2 text-gray-900">{post.title}</h2>
+                                <p className="text-gray-500 text-sm mb-3">{post.date}</p>
+
+                                {/* Summary with 4-line clamp */}
+                                <p className="text-gray-700 mb-4 flex-1 line-clamp-4">
+                                    {post.summary}
+                                </p>
+                            </motion.article>
+                        </Link>
                     ))}
                 </div>
             </section>
-
         </main>
     );
 }
