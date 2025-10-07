@@ -3,13 +3,14 @@
 import React, { JSX, useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { AnimatePresence, motion } from 'framer-motion';
-
+import { FaGithub } from "react-icons/fa";
 interface Project {
   title: string;
   github?: string; // optional GitHub link
   live?: string;
   description: string;
   details?: JSX.Element;
+  githubLinks?: { label: string; url: string }[]; // optional array of GitHub links with labels
 }
 
 export default function ProjectsPage() {
@@ -198,8 +199,15 @@ export default function ProjectsPage() {
       ),
     },
     {
-      title: "E-commerce Store",
-      github: "https://github.com/CodeBy-ParthKhambhadiya/ts-ecommerce-backend",
+      title: "E-commerce",
+      github: "",
+      githubLinks: [
+
+        { label: "ecommerce-frontend", url: "https://github.com/CodeBy-ParthKhambhadiya/ecommerce-frontend" },
+        { label: "ecommerce-backend", url: "https://github.com/CodeBy-ParthKhambhadiya/ecommerce-backend" },
+        { label: "ts-ecommerce-frontend", url: "https://github.com/CodeBy-ParthKhambhadiya/ts-ecommerce-frontend" },
+        { label: "ts-ecommerce-backend", url: "https://github.com/CodeBy-ParthKhambhadiya/ts-ecommerce-backend" },
+      ],
       live: "",
       description: "An online store with product listings, shopping cart, and checkout functionality using React.",
       details: (
@@ -325,11 +333,29 @@ export default function ProjectsPage() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition"
+                        className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition"
                       >
-                        GitHub
+                        <FaGithub className="text-lg" />
+                        <span>
+                          <strong>GitHub:</strong> Repository
+                        </span>
                       </a>
                     )}
+
+                    {project.githubLinks?.map((link, i) => (
+                      <a
+                        key={i}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition"
+                      >
+                        <FaGithub className="text-lg" />
+                        <span>
+                          <strong>GitHub:</strong> {link.label}
+                        </span>
+                      </a>
+                    ))}
                     {project.live && (
                       <a
                         href={project.live}
