@@ -4,11 +4,15 @@ import React, { JSX, useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { AnimatePresence, motion } from 'framer-motion';
 import { FaGithub } from "react-icons/fa";
+import { GiCelebrationFire } from "react-icons/gi";
+
+
 interface Project {
   title: string;
   github?: string; // optional GitHub link
   live?: string;
   description: string;
+  important: boolean; // new field to mark important projects
   details?: JSX.Element;
   githubLinks?: { label: string; url: string }[]; // optional array of GitHub links with labels
 }
@@ -26,6 +30,7 @@ export default function ProjectsPage() {
     {
       title: "Easy Exam Web",
       github: "",
+      important: true,
       live: "",
       description: "A web application for students to take exams online, with dynamic scoring and analytics features.",
       details: (
@@ -90,6 +95,7 @@ export default function ProjectsPage() {
     {
       title: "Shopping Platform",
       github: "",
+      important: true,
       live: "",
       description: "A PHP-based online marketplace supporting sellers and buyers with full product management features.",
       details: (
@@ -131,6 +137,7 @@ export default function ProjectsPage() {
     {
       title: "InstaPlug WordPress Plugin",
       github: "",
+      important: true,
       live: "https://instaplug.app/embed-instagram-feed-in-wordpress",
       description: "A custom WordPress plugin for seamless Instagram integration and content embedding on websites.",
       details: (
@@ -201,6 +208,7 @@ export default function ProjectsPage() {
     {
       title: "E-commerce",
       github: "",
+      important: true,
       githubLinks: [
 
         { label: "ecommerce-frontend", url: "https://github.com/CodeBy-ParthKhambhadiya/ecommerce-frontend" },
@@ -249,10 +257,52 @@ export default function ProjectsPage() {
         </div>
       ),
     },
+    {
+      title: "Pixen Interactive Tools",
+      important: false,
+      github: "https://github.com/CodeBy-ParthKhambhadiya/pixen-interactive-tools",
+      live: "https://pixen-interactive-tools.vercel.app/", // replace with actual live link
+      description: "A minimal toolkit for playing with pixels and design. Perfect for creative experiments, graphics, or image-based projects.",
+      details: (
+        <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
 
+          <h4 className="font-semibold">1. Purpose</h4>
+          <p>- Provides tools to experiment with pixel-based designs and interactive graphics.</p>
+          <p>- Allows users to quickly test ideas, scan text, and simulate AI chats.</p>
+
+          <h4 className="font-semibold mt-2">2. Tools & Features</h4>
+          <ul className="list-disc list-inside">
+            <li>Text Scanner: Upload and extract text from images.</li>
+            <li>Quick AI Chat Simulator: Test conversational AI quickly.</li>
+            <li>Emoji AI Chat Simulator: Play with AI responses in emoji form.</li>
+            <li>Pixel Playground: Experiment with pixel art and designs interactively.</li>
+            <li>Copy & Reuse: Easily copy generated content for your projects.</li>
+          </ul>
+
+          <h4 className="font-semibold mt-2">3. Frontend & UI</h4>
+          <ul className="list-disc list-inside">
+            <li>Responsive UI for desktop and mobile.</li>
+            <li>Minimalistic design for better focus on tools.</li>
+            <li>Interactive elements with immediate feedback.</li>
+          </ul>
+
+          <h4 className="font-semibold mt-2">4. Tech Stack Summary</h4>
+          <ul className="list-disc list-inside">
+            <li>Frontend: Next.js, React</li>
+            <li>Styling: Tailwind CSS</li>
+            <li>State Management: useState / useContext</li>
+            <li>File Handling: Browser File API for uploads</li>
+            <li>Animations & Interactivity: Framer Motion / CSS transitions</li>
+            <li>Deployment: Vercel</li>
+          </ul>
+
+        </div>
+      ),
+    },
     {
       title: "Portfolio Website",
       github: "https://github.com/CodeBy-ParthKhambhadiya/parth-portfolio",
+      important: false,
       live: "https://parth-portfolio-eosin.vercel.app/",
       description: "A personal portfolio to showcase my projects and skills, built with Next.js and Tailwind CSS.",
       details: (
@@ -321,9 +371,21 @@ export default function ProjectsPage() {
                 <div className="flex-1 min-w-[250px] pr-6">
 
                   {/* Project Title */}
-                  <h3 className="text-2xl md:text-3xl font-bold mb-3 text-bg-gray-800 ">
-                    {project.title}
-                  </h3>
+                  <div className="flex items-center gap-3">
+                    <h3
+                      className={`text-2xl md:text-3xl font-bold mb-3 ${'text-gray-800'
+                        }`}
+                    >
+                      {project.title}
+                    </h3>
+
+                    {project.important && (
+                      <span className="inline-flex items-center justify-center w-6 h-6 mb-3 bg-red-600 text-white rounded-full">
+                        <GiCelebrationFire className="w-4 h-4" />
+                      </span>
+                    )}
+                  </div>
+
 
 
                   {/* GitHub & Live Links */}
