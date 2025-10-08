@@ -179,7 +179,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                         </div>
                     )}
                 </div>
-
+                    
 
                 {/* Description */}
                 <p className="text-gray-700 text-base sm:text-lg mb-6 leading-relaxed">

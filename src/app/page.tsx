@@ -6,39 +6,36 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col items-center justify-center bg-gray-50 px-4 py-12">
-
+      
       {/* Hero Section */}
       <section className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl bg-white rounded-3xl p-8 md:p-16 shadow-xl animate-fadeIn">
 
         {/* Text Content */}
         <div className="md:w-1/2 space-y-6 text-center md:text-left">
-          <div className="text-center md:text-left space-y-2">
-            {/* Name */}
+          {/* Name & Role */}
+          <div className="space-y-2">
             <h3 className="text-3xl md:text-4xl font-bold text-gray-700">
               Parth Khambhadiya
             </h3>
-
-            {/* Role */}
             <h2 className="text-xl md:text-2xl font-semibold text-gray-700">
               Full-Stack Developer
             </h2>
-
-            {/* Technologies / Languages */}
             <p className="text-gray-600 text-sm md:text-base">
               HTML | CSS | JavaScript | TypeScript | React | Next.js | Node.js | PHP | MySQL | PostgreSQL | MongoDB | Bootstrap
             </p>
           </div>
+
           {/* Description */}
           <p className="text-gray-700 leading-relaxed font-medium text-justify">
             A passionate full-stack web developer based in Surat, Gujarat. I hold a B.Tech in Information Technology and specialize in building dynamic, responsive, and user-friendly web applications.
           </p>
 
-          {/* Point-wise Skills / Experience */}
+          {/* Key Skills */}
           <div className="mt-4">
             <h2 className="text-xl font-semibold text-gray-900 mb-2 text-justify">Key Skills & Experience:</h2>
             <ul className="list-disc list-inside text-gray-700 space-y-2 pl-4 text-justify">
               <li>Proficient in HTML, CSS, JavaScript, PHP, Node.js, MySQL, MongoDB, and Bootstrap.</li>
-              <li>Experience building web apps like <strong>Easy Exam Web</strong> for students and <strong>Shopping Cart Websites</strong> for e-commerce.</li>
+              <li>Experience building web apps like <strong>Easy Exam Web</strong> and <strong>Shopping Cart Websites</strong>.</li>
               <li>Developed WordPress plugins like <strong>InstaPlug</strong> for Instagram integration.</li>
               <li>Skilled in designing APIs, database integration, and optimizing frontend performance.</li>
               <li>Hands-on with full-stack development using React, Next.js, and TypeScript.</li>
@@ -62,24 +59,24 @@ export default function HomePage() {
               About Me
             </Link>
           </div>
-
         </div>
 
         {/* Image Content */}
-        <div className="md:w-1/2 mt-0 md:mt-0 flex justify-center relative">
-          {/* Container for string + image */}
-          <div className="flex flex-col items-center mt-4"> {/* mt-4 pushes slightly from top if needed */}
-
-            {/* The string */}
-            <div className="w-1 bg-gray-400 dark:bg-gray-200 h-48"></div> {/* adjust height */}
-            <div className="w-4 h-4 bg-gray-400 dark:bg-gray-200 rounded-full mb-2"></div> {/* small hook */}
+        <div className="md:w-1/2 flex justify-center relative mt-8 md:mt-0">
+          <div className="flex flex-col items-center">
+            {/* Connector Line + Dot */}
+            <div className="w-1 bg-gray-400 dark:bg-gray-200 h-48"></div>
+            <div className="w-4 h-4 bg-gray-400 dark:bg-gray-200 rounded-full mb-2"></div>
 
             {/* Flip Card */}
-            <div className="w-64 h-64 md:w-96 md:h-96 perspective">
-              <div className="relative w-full h-full transition-transform duration-[5.8s] transform-style-preserve-3d hover:rotate-y-180">
-
+            <div className="w-64 h-64 md:w-96 md:h-96" style={{ perspective: '1000px' }}>
+              <div
+                className="relative w-full h-full transition-transform duration-[5.8s] transform-style-preserve-3d hover:rotate-y-180"
+                style={{ transformStyle: 'preserve-3d' }}
+              >
                 {/* Front Image */}
-                <div className="absolute w-full h-full backface-hidden rounded-full overflow-hidden shadow-2xl ring-4 ring-gray-300">
+                <div className="absolute w-full h-full rounded-full overflow-hidden shadow-2xl ring-4 ring-gray-300"
+                     style={{ backfaceVisibility: 'hidden' }}>
                   <Image
                     src={heroImage}
                     alt="Front Image"
@@ -89,21 +86,19 @@ export default function HomePage() {
                 </div>
 
                 {/* Back Image */}
-                <div className="absolute w-full h-full backface-hidden rotate-y-180 rounded-full overflow-hidden shadow-2xl ring-4 ring-gray-300">
+                <div className="absolute w-full h-full rounded-full overflow-hidden shadow-2xl ring-4 ring-gray-300 rotate-y-180"
+                     style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
                   <Image
-                    src={heroImage} // replace with back image if desired
+                    src={heroImage} // replace with a back image if desired
                     alt="Back Image"
                     fill
                     className="object-cover"
                   />
                 </div>
-
               </div>
             </div>
           </div>
         </div>
-
-
 
       </section>
     </div>

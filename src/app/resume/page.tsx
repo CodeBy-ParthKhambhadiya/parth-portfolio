@@ -11,8 +11,8 @@ export default function Resume() {
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { staggerChildren: 0.2, duration: 0.6 }
     },
@@ -23,22 +23,22 @@ export default function Resume() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
-const skills = [
-  'C',
-  'Java',
-  'JavaScript',
-  'TypeScript',
-  'PHP',
-  'Node.js',
-  'React',
-  'Next.js',
-  'HTML5',
-  'CSS3',
-  'Bootstrap',
-  'MySQL',
-  'MongoDB',
-  'PostgreSQL',
-];
+  const skills = [
+    'C',
+    'Java',
+    'JavaScript',
+    'TypeScript',
+    'PHP',
+    'Node.js',
+    'React',
+    'Next.js',
+    'HTML5',
+    'CSS3',
+    'Bootstrap',
+    'MySQL',
+    'MongoDB',
+    'PostgreSQL',
+  ];
   const experience = [
     {
       role: 'Junior Web Developer',
@@ -74,20 +74,24 @@ const skills = [
       description: 'Developed a dynamic shopping cart with category and product modules, CRUD operations, sorting, searching, multi-delete, active/deactive status, and responsive UI.',
     },
     {
-      title: 'Node.js API Development with MongoDB and MySQL',
-      period: 'JAN 2025 - CURRENT',
-      tech: 'Node.js, MongoDB, MySQL',
-      description: 'Developed backend APIs for CRUD operations and search functionalities using Node.js with MongoDB and MySQL.',
-    },
+  title: 'Node.js API Development with MongoDB and MySQL | HMR Technology',
+  period: 'JAN 2025 - CURRENT',
+  tech: 'Node.js, MongoDB, MySQL, PostgreSQL, Sequelize, Prisma, React, TypeScript, Next.js',
+  description: `Developed backend APIs for CRUD operations and search functionalities using Node.js with MongoDB and MySQL. 
+  Worked on a full-stack e-commerce application using React and TypeScript for the frontend, and Node.js with Sequelize and PostgreSQL for the backend. 
+  Gained 4 months of hands-on experience building live projects using Next.js for frontend and Node.js with PostgreSQL and Prisma for backend. 
+  Additionally, created a modern, responsive portfolio website to showcase projects, skills, and professional experience.`
+}
+
   ];
 
   return (
-    <motion.div
-      className="max-w-7xl mx-auto p-8 bg-gray-50 rounded-xl shadow-lg"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
+<motion.div
+  className="max-w-7xl mx-auto p-8 bg-gray-50 rounded-xl shadow-lg relative"
+  variants={containerVariants}
+  initial="hidden"
+  animate="visible"
+>
       {/* Header */}
       <motion.div className="text-center mb-8" variants={itemVariants}>
         <h1 className="text-4xl font-bold text-gray-900">Parth Khambhadiya</h1>
@@ -158,16 +162,30 @@ const skills = [
       </motion.section>
 
       {/* Download Button */}
-      <motion.div className="flex justify-center mt-8" variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-        <a
-          href={googleDriveLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg flex items-center gap-3 hover:from-blue-700 hover:to-indigo-700 transition shadow-lg"
-        >
-          <FaDownload size={20} /> Download Resume
-        </a>
-      </motion.div>
+   <motion.div
+  className="absolute top-8 right-8 flex items-center justify-center"
+  variants={itemVariants}
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+>
+  <div className="relative group">
+    {/* Circular Button */}
+    <a
+      href={googleDriveLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-14 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:from-blue-700 hover:to-indigo-700"
+    >
+      <FaDownload size={20} />
+    </a>
+
+    {/* Tooltip Label */}
+    <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-gray-900 text-white text-sm px-2 py-1 rounded-md transition-opacity duration-300 whitespace-nowrap">
+      Download Resume
+    </span>
+  </div>
+</motion.div>
+
     </motion.div>
   );
 }
