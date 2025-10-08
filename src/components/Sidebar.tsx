@@ -8,7 +8,6 @@ import {
     FaHome,
     FaUser,
     FaProjectDiagram,
-    FaEnvelopeOpen,
     FaFileAlt,
     FaBlog
 } from "react-icons/fa";

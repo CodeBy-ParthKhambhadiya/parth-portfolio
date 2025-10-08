@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 const testimonials = [
   {
@@ -37,10 +38,12 @@ export default function TestimonialsPage() {
             key={index}
             className="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center hover:scale-105 transform transition"
           >
-            <img
+            <Image
               src={t.avatar}
               alt={t.name}
               className="w-20 h-20 rounded-full mb-4"
+              width={80}
+              height={80}
             />
             <p className="text-gray-800 mb-4">&quot;{t.message}&quot;</p>
             <h3 className="text-lg font-semibold text-gray-900">{t.name}</h3>

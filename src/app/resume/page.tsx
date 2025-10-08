@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { FaDownload, FaEnvelope, FaPhone, FaLinkedin, FaGithub } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 

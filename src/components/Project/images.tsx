@@ -1,4 +1,4 @@
-import { useState, FC } from "react";
+import { FC } from "react";
 
 export const instaplugProjectImages: string[] = [
     "https://res.cloudinary.com/dbxwglui1/image/upload/v1759828674/instaplug1_jasc2f.png",

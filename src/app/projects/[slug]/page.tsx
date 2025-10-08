@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, use } from 'react';
 import { notFound } from 'next/navigation';
 import { projects } from '../page';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
@@ -12,13 +12,11 @@ import Image from 'next/image';
 import { sliderSettings } from '@/components/Project/images';
 
 interface ProjectProps {
-    params: {
-        slug: string;
-    };
+    params: Promise<{ slug: string }>;
 }
-
 export default function ProjectPage({ params }: ProjectProps) {
-    const { slug } = params;
+    // unwrap the promise (or use directly if not a Promise)
+const { slug } = use(params);
     const project = projects.find((p) => p.slug === slug);
     const [currentSlide, setCurrentSlide] = useState(0);
 

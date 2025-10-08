@@ -1,10 +1,8 @@
 'use client';
 
-import React, { JSX, useState } from "react";
-import { FaPlus, FaMinus, FaExternalLinkAlt } from "react-icons/fa";
-import { AnimatePresence, motion } from 'framer-motion';
+import React, { JSX } from "react";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import { GiCelebrationFire } from "react-icons/gi";
 import Link from "next/link";
 declare module "react-slick";
 import Slider from "react-slick";
@@ -380,7 +378,6 @@ export default function ProjectsPage() {
               >
                 {project.images && project.images.length > 0
                   ? project.images.reduce((acc: string[][], img, i) => {
-                    // group images into chunks of 3 per slide (change 3 as needed)
                     if (i % 1 === 0) acc.push([img]);
                     else acc[acc.length - 1].push(img);
                     return acc;
