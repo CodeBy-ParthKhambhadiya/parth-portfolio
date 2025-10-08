@@ -1,7 +1,7 @@
 'use client';
 
 import React, { JSX } from "react";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaExternalLinkAlt, FaFire } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
 declare module "react-slick";
@@ -27,7 +27,7 @@ export const projects: Project[] = [
     title: "Easy Exam Web",
     slug: "easy-exam-web",
     github: "",
-    important: true,
+    important: false,
     live: "",
     description: "A web application for students to take exams online, with dynamic scoring and analytics features.",
     details: (
@@ -93,7 +93,7 @@ export const projects: Project[] = [
     title: "Shopping Platform",
     slug: "shopping-platform",
     github: "",
-    important: true,
+    important: false,
     live: "",
     description: "A PHP-based online marketplace supporting sellers and buyers with full product management features.",
     details: (
@@ -370,44 +370,54 @@ export default function ProjectsPage() {
               className="block"
             >
               {/* Image / Color block */}
-              <Slider
-                {...sliderSettings}
-                slidesToShow={1}       // one slide visible at a time
-                slidesToScroll={1}     // scroll one slide at a time
-                arrows={true}          // show arrows
+           <div className="relative w-[414px] h-[234px] mx-auto">
+  <Slider
+    {...sliderSettings}
+    slidesToShow={1}       // one slide visible at a time
+    slidesToScroll={1}     // scroll one slide at a time
+    arrows={true}          // show arrows
+  >
+    {project.images && project.images.length > 0
+      ? project.images.reduce((acc: string[][], img, i) => {
+          if (i % 1 === 0) acc.push([img]);
+          else acc[acc.length - 1].push(img);
+          return acc;
+        }, []).map((group, index) => (
+          <div key={index} className="flex flex-col gap-4 items-center">
+            {group.map((img, idx) => (
+              <div
+                key={idx}
+                className="w-[414px] h-[234px] flex items-center justify-center"
               >
-                {project.images && project.images.length > 0
-                  ? project.images.reduce((acc: string[][], img, i) => {
-                    if (i % 1 === 0) acc.push([img]);
-                    else acc[acc.length - 1].push(img);
-                    return acc;
-                  }, []).map((group, index) => (
-                    <div key={index} className="flex flex-col gap-4 items-center">
-                      {group.map((img, idx) => (
-                        <div
-                          key={idx}
-                          className="w-[414px] h-[234px] flex items-center justify-center"
-                        >
-                          <Image
-                            src={img}
-                            alt={`${project.title} screenshot ${idx + 1}`}
-                            width={414}
-                            height={234}
-                            className="object-cover rounded-lg"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  ))
-                  : (
-                    <div className="flex flex-col gap-4 items-center">
-                      {/* Placeholder empty slide to keep space */}
-                      <div className="w-[414px] h-[242px] flex items-center justify-center">
-                        <p className="text-gray-500 text-sm">No Image</p>
-                      </div>
-                    </div>
-                  )}
-              </Slider>
+                <Image
+                  src={img}
+                  alt={`${project.title} screenshot ${idx + 1}`}
+                  width={414}
+                  height={234}
+                  className="object-cover rounded-lg"
+                />
+              </div>
+            ))}
+          </div>
+        ))
+      : (
+        <div className="flex flex-col gap-4 items-center">
+          <div className="w-[414px] h-[234px] flex items-center justify-center">
+            <p className="text-gray-500 text-sm">No Image</p>
+          </div>
+        </div>
+      )}
+  </Slider>
+
+  {/* Fire icon for important projects */}
+  {project.important && (
+    <div className="absolute top-2 right-2 bg-red-600 rounded-full p-1 shadow-lg animate-pulse">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="text-white" viewBox="0 0 16 16">
+        <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15"/>
+      </svg>
+    </div>
+  )}
+</div>
 
 
               {/* Title, description */}
