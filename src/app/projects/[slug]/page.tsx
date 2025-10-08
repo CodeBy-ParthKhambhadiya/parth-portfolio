@@ -92,20 +92,20 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
                         <div
                             className="w-full max-w-[80vw] max-h-[90vh]"
-                            onClick={(e) => e.stopPropagation()} 
+                            onClick={(e) => e.stopPropagation()}
                         >
                             <Slider
-                                {...sliderSettings} 
+                                {...sliderSettings}
                                 initialSlide={currentSlide}
                                 arrows={true}
                                 nextArrow={<Arrow direction="next" top="40%" />}
-                                prevArrow={<Arrow direction="prev" top="40%" />} 
+                                prevArrow={<Arrow direction="prev" top="40%" />}
                             >
                                 {images.map((img, idx) => (
                                     <div
                                         key={idx}
                                         className="flex items-center justify-center"
-                                        onClick={(e) => e.stopPropagation()} 
+                                        onClick={(e) => e.stopPropagation()}
                                     >
                                         <Image
                                             src={img}
@@ -172,12 +172,14 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                         {project.title}
                     </h1>
                     {project.important && (
-                        <GiCelebrationFire
-                            className="text-red-600 w-5 h-5 sm:w-6 sm:h-6"
-                            title="Important Project"
-                        />
+                        <div className=" top-2 right-2 bg-red-600 rounded-full p-1 shadow-lg animate-pulse">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="text-white" viewBox="0 0 16 16">
+                                <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15" />
+                            </svg>
+                        </div>
                     )}
                 </div>
+
 
                 {/* Description */}
                 <p className="text-gray-700 text-base sm:text-lg mb-6 leading-relaxed">

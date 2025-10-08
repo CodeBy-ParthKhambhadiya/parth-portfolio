@@ -36,7 +36,17 @@ export const eCommerceProjectImages: string[] = [
     "https://res.cloudinary.com/dbxwglui1/image/upload/v1759837303/becommerce19_z3ttvg.png",
     "https://res.cloudinary.com/dbxwglui1/image/upload/v1759837303/becommerce20_otynhf.png"
 ];
-
+export const pixenProjectImages: string[] = [
+    "https://res.cloudinary.com/dbxwglui1/image/upload/v1759915741/pixen1_vfovqg.png",
+    "https://res.cloudinary.com/dbxwglui1/image/upload/v1759915740/pixen2_qxchwq.png",
+    "https://res.cloudinary.com/dbxwglui1/image/upload/v1759915740/pixen3_gajmqv.png",
+    "https://res.cloudinary.com/dbxwglui1/image/upload/v1759915739/pixen4_rrif2u.png",
+    "https://res.cloudinary.com/dbxwglui1/image/upload/v1759915740/pixen5_bypiow.png",
+    "https://res.cloudinary.com/dbxwglui1/image/upload/v1759915740/pixen6_e34zyf.png",
+    "https://res.cloudinary.com/dbxwglui1/image/upload/v1759916234/pixen7_oeqlop.png",
+    "https://res.cloudinary.com/dbxwglui1/image/upload/v1759915740/pixen9_atoc7b.png",
+    "https://res.cloudinary.com/dbxwglui1/image/upload/v1759915740/pixen10_ypwjjs.png"
+];
 export type ArrowProps = {
     onClick?: () => void;
     direction: "next" | "prev";
