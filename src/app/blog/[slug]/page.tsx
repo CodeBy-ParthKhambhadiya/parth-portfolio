@@ -1,16 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { use, useMemo, useState } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
+import { generateGradientFromSlug } from '../page';
 
 interface Post {
     title: string;
     date: string;
     content: string;
 }
-
+interface BlogPostProps {
+    params: {
+        slug: string;
+    };
+}
 
 const posts: Record<string, Post> = {
     'wordpress-plugin-graphql': {
@@ -248,40 +253,48 @@ This project consolidated my knowledge from previous months and gave me practica
     },
 };
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
-    // Hook must be at the top level
-    const [showMore, setShowMore] = useState(false);
+export default function BlogPost({ params }: { params: Promise<BlogPostProps['params']> }) {
+    // unwrap the Promise
+    const resolvedParams = use(params);
+    const slug = resolvedParams.slug;
 
-    const post = posts[params.slug];
+    const post = posts[slug];
     if (!post) return notFound();
 
-    // Preview: show first 2 lines
-    const preview = post.content.split('\n').slice(0, 2).join('\n');
+    const gradient = generateGradientFromSlug(slug);
 
     return (
-        <main className="max-w-3xl mx-auto px-6 py-16">
-            {/* Back button */}
-            <Link
-                href="/blog"
-                className="inline-flex items-center mb-6 px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
-            >
-                <FaArrowLeft className="mr-2" />
-                Back
-            </Link>
+        <main className="flex flex-col items-center bg-gray-50 min-h-screen px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+            <div className="w-full max-w-4xl bg-white shadow-lg rounded-3xl overflow-hidden">
 
-            {/* Post header */}
-            <h1 className="text-4xl font-bold mb-2 text-gray-900">{post.title}</h1>
-            <p className="text-gray-500 mb-6">{post.date}</p>
+                {/* 🎨 Gradient Header */}
+                <div
+                    className="h-48 sm:h-56 md:h-64 flex flex-col justify-end p-6 text-white"
+                    style={{ background: gradient }}
+                >
+                    <Link
+                        href="/blog"
+                        className="inline-flex items-center mb-4 px-3 py-1.5 bg-white/30 backdrop-blur-sm text-white rounded-lg 
+             hover:bg-white/80 hover:text-black transition text-sm sm:text-base self-start"
+                    >
+                        <FaArrowLeft className="mr-2" />
+                        Back
+                    </Link>
 
-            {/* Post content */}
-            <article className="text-gray-800 leading-relaxed whitespace-pre-line mb-6">
-                {showMore ? post.content : preview}
-            </article>
 
-            {/* Read More / Show Less button */}
-            <p className="text-gray-700 text-base md:text-lg whitespace-pre-line">
-                {post.content}
-            </p>
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug">
+                        {post.title}
+                    </h1>
+                    <p className="text-gray-100 text-sm sm:text-base">{post.date}</p>
+                </div>
+
+                {/* 📝 Post Content */}
+                <div className="p-6 sm:p-10">
+                    <article className="text-gray-800 text-base sm:text-lg leading-relaxed whitespace-pre-line">
+                        {post.content}
+                    </article>
+                </div>
+            </div>
         </main>
     );
 }

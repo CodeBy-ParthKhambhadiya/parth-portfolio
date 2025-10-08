@@ -1,7 +1,10 @@
 'use client';
 
+import { sliderSettings } from '@/components/Project/images';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useState } from 'react';
+import Slider from 'react-slick';
 
 const blogPosts = [
     {
@@ -91,67 +94,191 @@ const blogPosts = [
         slug: 'nextjs-live-project-4-months',
     },
 ];
-function generateGradient(existingGradients: string[]): string {
-    let gradient = "";
-    do {
-        // Generate two darker/mid-tone colors suitable for white text
-        const randomColor = () => {
-            const r = Math.floor(Math.random() * 131) + 50; // 50–180
-            const g = Math.floor(Math.random() * 131) + 50;
-            const b = Math.floor(Math.random() * 131) + 50;
-            return `rgb(${r}, ${g}, ${b})`;
-        };
 
-        gradient = `linear-gradient(to bottom, ${randomColor()}, ${randomColor()})`;
-    } while (existingGradients.includes(gradient));
+export function generateGradientFromSlug(slug: string): string {
+    let hash = 0;
+    for (let i = 0; i < slug.length; i++) {
+        hash = slug.charCodeAt(i) + ((hash << 5) - hash);
+    }
 
-    return gradient;
+    const colorFromHash = (offset: number) => {
+        const r = (hash >> (offset + 16)) & 0xff;
+        const g = (hash >> (offset + 8)) & 0xff;
+        const b = hash & 0xff;
+        return `rgb(${r % 131 + 50}, ${g % 131 + 50}, ${b % 131 + 50})`;
+    };
+
+    return `linear-gradient(to bottom right, ${colorFromHash(0)}, ${colorFromHash(3)})`;
 }
+
+const layouts = [
+    'Masonry',
+    'Single Column',
+    'Multi-Column',
+    'Grid',
+    'Flexbox',
+    'Hero',
+    'Magazine',
+    'Full-Screen',
+    'Slider',
+    'Card Deck',
+    'Timeline',
+    'Pinterest',
+    'Carousel',
+    'List',
+    'Feature Grid',
+    'Square Grid', // added
+];
+
 export default function BlogPage() {
-    const usedGradients: string[] = [];
+    const [layout, setLayout] = useState('Masonry');
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    const getLayoutClass = () => {
+        switch (layout) {
+            case 'Single Column': return 'columns-1';
+            case 'Multi-Column': return 'columns-2 sm:columns-2 lg:columns-3';
+            case 'Grid': return 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4';
+            case 'Masonry': return 'columns-3 gap-4';
+            case 'Flexbox': return 'flex flex-wrap gap-4';
+            case 'Hero': return 'flex flex-col gap-6';
+            case 'Magazine': return 'columns-2 sm:columns-3 gap-6';
+            case 'Full-Screen': return 'grid grid-cols-1 gap-0';
+            case 'Slider': return ''; // handled by slider
+            case 'Card Deck': return 'flex flex-wrap gap-4 justify-center';
+            case 'Timeline': return 'flex flex-col gap-6';
+            case 'Pinterest': return 'columns-4 gap-4';
+            case 'Carousel': return ''; // similar to slider
+            case 'List': return 'flex flex-col gap-2';
+            case 'Feature Grid': return 'grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6';
+            case 'Square Grid': return 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4';
+            default: return 'columns-1';
+        }
+    };
+
+    const getPostClasses = () => {
+        switch (layout) {
+            case 'Grid':
+            case 'Feature Grid':
+            case 'Card Deck':
+            case 'Pinterest':
+            case 'Carousel':
+            case 'Square Grid': return 'relative overflow-hidden shadow-lg flex flex-col justify-end p-4 text-white'; case 'Hero': return 'h-72 sm:h-96 flex items-end p-6 text-white rounded-xl';
+            case 'Full-Screen': return 'h-screen flex items-center justify-center text-white text-center text-2xl font-bold';
+            case 'Slider': return 'rounded-xl overflow-hidden shadow-lg p-4 text-white flex flex-col justify-end';
+            case 'Timeline': return 'p-4 border-l-2 border-gray-300 relative';
+            case 'List': return 'p-3 border-b border-gray-200';
+            case 'Masonry': return 'break-inside-avoid mb-4 relative cursor-pointer flex items-end p-2 shadow-md hover:shadow-xl transition-shadow duration-300';
+            default: return '';
+        }
+    };
+    const totalSlides = blogPosts.length;
 
     return (
         <main className="flex flex-col items-center px-0 py-16 bg-gray-50 min-h-screen">
-            <section className="w-full max-w-6xl text-center mb-12">
-                <h1 className="text-4xl font-bold mb-2">My Blog</h1>
-                <p className="text-gray-700 text-lg md:text-xl">
-                    Thoughts, tutorials, and experiences from my dev journey
-                </p>
+            {/* Header */}
+            <section className="w-full max-w-6xl mb-6 flex justify-between items-center">
+                {/* Left side: Title & subtitle */}
+                <div className="text-left">
+                    <h1 className="text-4xl font-bold mb-2">My Blog</h1>
+                    <p className="text-gray-700 text-lg md:text-xl">
+                        Thoughts, tutorials, and experiences from my dev journey
+                    </p>
+                </div>
+
+                {/* Right side: Layout label + Dropdown */}
+                <div className="flex items-center space-x-2">
+                    <span className="font-bold">
+                        Layout:
+                    </span>
+                    <select
+                        value={layout}
+                        onChange={(e) => setLayout(e.target.value)}
+                        className="p-2 rounded-lg text-black bg-white border border-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                        {layouts.map((l) => (
+                            <option key={l} value={l}>{l}</option>
+                        ))}
+                    </select>
+                </div>
             </section>
 
+
+
+            {/* Posts Section */}
             <section className="w-full max-w-6xl">
-                <div className="columns-1 sm:columns-2 lg:columns-3 gap-0">
-                    {blogPosts.map((post, index) => {
-                        const minHeight = 150;
-                        const maxHeight = 600;
-                        const randomHeight =
-                            Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
+                {layout === 'Slider' ? (
+                    <div className="relative w-full">
+                        <Slider
+                            {...sliderSettings}
+                            afterChange={(index) => setCurrentSlide(index)}
+                        >
+                            {blogPosts.map((post) => {
+                                const gradient = generateGradientFromSlug(post.slug);
 
-                        // Generate a unique gradient
-                        const gradient = generateGradient(usedGradients);
-                        usedGradients.push(gradient);
+                                return (
+                                    <Link key={post.slug} href={`/blog/${post.slug}`}>
+                                        <div
+                                            style={{
+                                                background: gradient,
+                                                width: '100%',
+                                                height: '500px',
+                                            }}
+                                            className="cursor-pointer relative overflow-hidden flex flex-col justify-end p-8 text-white"
+                                        >
+                                            <div className="absolute inset-0 flex flex-col justify-center items-center text-center">
+                                                <h2 className="text-4xl font-bold">{post.title}</h2>
+                                                <p className="text-lg mt-2">{post.date}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                );
+                            })}
+                        </Slider>
 
-                        return (
-                            <Link key={index} href={`/blog/${post.slug}`}>
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: index * 0.1 }}
-                                    style={{
-                                        height: `${randomHeight}px`,
-                                        background: gradient,
-                                    }}
-                                    className="break-inside-avoid mb-0 relative cursor-pointer flex items-end p-2 shadow-md hover:shadow-xl transition-shadow duration-300"
-                                >
-                                    <div className="text-white">
-                                        <h2 className="text-lg font-bold">{post.title}</h2>
-                                        <p className="text-sm">{post.date}</p>
-                                    </div>
-                                </motion.div>
-                            </Link>
-                        );
-                    })}
-                </div>
+                        {/* Slide counter in bottom-right corner */}
+                        <div className="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white px-4 py-2 rounded-md text-sm font-medium">
+                            {currentSlide + 1} / {totalSlides}
+                        </div>
+                    </div>
+
+                ) : (
+                    <div className={`${getLayoutClass()}`}>
+                        {blogPosts.map((post, index) => {
+                            const gradient = generateGradientFromSlug(post.slug);
+
+                            // Determine height
+                            const height =
+                                layout === 'Hero'
+                                    ? undefined
+                                    : layout === 'Full-Screen'
+                                        ? '100vh'
+                                        : layout === 'Grid' || layout === 'Square Grid' || layout === 'Feature Grid'
+                                            ? '300px'
+                                            : `${Math.floor(Math.random() * (600 - 150 + 1) + 150)}px`;
+
+                            // For Square Grid, make width equal height
+                            const size = layout === 'Square Grid' ? '300px' : undefined;
+
+                            return (
+                                <Link key={post.slug} href={`/blog/${post.slug}`}>
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: index * 0.1 }}
+                                        style={{ height, width: size, background: gradient }}
+                                        className={`break-inside-avoid mb-4 relative cursor-pointer flex items-end p-2 shadow-md hover:shadow-xl transition-shadow duration-300 ${getPostClasses()}`}
+                                    >
+                                        <div className={layout === 'Full-Screen' ? 'w-full' : 'text-white'}>
+                                            <h2 className="text-lg font-bold">{post.title}</h2>
+                                            <p className="text-sm">{post.date}</p>
+                                        </div>
+                                    </motion.div>
+                                </Link>
+                            );
+                        })}
+                    </div>
+                )}
             </section>
         </main>
     );

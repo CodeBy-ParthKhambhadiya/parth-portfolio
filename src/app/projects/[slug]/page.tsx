@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { notFound } from 'next/navigation';
-import { projects } from '../page'; // Make sure this exports the projects array
+import { projects } from '../page';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { GiCelebrationFire } from 'react-icons/gi';
 import { FiArrowLeft } from 'react-icons/fi';
@@ -20,30 +20,27 @@ interface ProjectProps {
 export default function ProjectPage({ params }: ProjectProps) {
     const { slug } = params;
     const project = projects.find((p) => p.slug === slug);
-
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    if (!project) {
-        return notFound();
-    }
+    if (!project) return notFound();
 
     const totalImages = project.images?.length || 0;
 
     return (
-        <main className="flex flex-col items-center px-6 sm:px-10 py-16 bg-gray-50 min-h-screen">
-            <div className="w-full max-w-4xl bg-white rounded-3xl shadow-lg p-8 sm:p-10">
+        <main className="flex flex-col items-center px-4 sm:px-6 lg:px-10 py-10 sm:py-16 bg-gray-50 min-h-screen">
+            <div className="w-full max-w-5xl bg-white rounded-3xl shadow-lg p-5 sm:p-8 md:p-10">
 
                 {/* Back Button */}
                 <Link
                     href="/projects"
-                    className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
+                    className="inline-flex items-center gap-2 mb-6 px-3 sm:px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition text-sm sm:text-base"
                 >
-                    <FiArrowLeft className="w-5 h-5" />
+                    <FiArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                     Back
                 </Link>
 
-                {/* Slider */}
-                <div className="relative">
+                {/* Image Slider Section */}
+                <div className="relative mb-6">
                     <Slider
                         {...sliderSettings}
                         afterChange={(current: number) => setCurrentSlide(current)}
@@ -57,31 +54,29 @@ export default function ProjectPage({ params }: ProjectProps) {
                                     <Image
                                         src={img}
                                         alt={`${project.title} screenshot ${idx + 1}`}
-                                        width={815}
+                                        width={800}
                                         height={500}
-                                        className="object-cover rounded-xl w-full h-[500px]"
+                                        className="object-cover rounded-xl w-full h-[220px] sm:h-[350px] md:h-[450px] lg:h-[500px]"
                                     />
                                 </div>
                             ))
                         ) : (
-                            <div className="flex items-center justify-center w-full h-[500px] border-2 border-gray-400 rounded-lg">
-                                <p className="text-gray-500 text-sm text-center">
-                                    No Image
-                                </p>
+                            <div className="flex items-center justify-center w-full h-[200px] sm:h-[350px] md:h-[450px] border-2 border-gray-400 rounded-lg">
+                                <p className="text-gray-500 text-sm text-center">No Image</p>
                             </div>
                         )}
                     </Slider>
 
                     {/* Image Counter */}
                     {totalImages > 0 && (
-                        <div className="absolute bottom-3 right-4 bg-black/50 text-white text-sm px-2 py-1 rounded">
+                        <div className="absolute bottom-3 right-4 bg-black/50 text-white text-xs sm:text-sm px-2 py-1 rounded">
                             {currentSlide + 1} / {totalImages}
                         </div>
                     )}
                 </div>
 
                 {/* GitHub & Live Links */}
-                <div className="flex flex-wrap gap-3 mb-3 mt-3">
+                 <div className="flex flex-wrap gap-3 mb-3 mt-3">
                     {/* Single GitHub */}
                     {project.github && (
                         <a
@@ -129,19 +124,27 @@ export default function ProjectPage({ params }: ProjectProps) {
                     )}
                 </div>
 
+
                 {/* Project Title */}
-                <div className="flex items-center gap-3 mb-4 flex-wrap">
-                    <h1 className="text-3xl md:text-4xl font-bold text-gray-800">{project.title}</h1>
+                <div className="flex items-center gap-2 sm:gap-3 mb-4 flex-wrap">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 leading-tight">
+                        {project.title}
+                    </h1>
                     {project.important && (
-                        <GiCelebrationFire className="text-red-600 w-6 h-6" title="Important Project" />
+                        <GiCelebrationFire
+                            className="text-red-600 w-5 h-5 sm:w-6 sm:h-6"
+                            title="Important Project"
+                        />
                     )}
                 </div>
 
-                {/* Project Description */}
-                <p className="text-gray-700 text-lg mb-6">{project.description}</p>
+                {/* Description */}
+                <p className="text-gray-700 text-base sm:text-lg mb-6 leading-relaxed">
+                    {project.description}
+                </p>
 
-                {/* Project Details */}
-                <div className="text-gray-700 text-base md:text-lg leading-relaxed">
+                {/* Details */}
+                <div className="text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed whitespace-pre-line">
                     {project.details}
                 </div>
             </div>
