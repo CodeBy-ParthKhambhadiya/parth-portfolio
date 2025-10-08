@@ -95,7 +95,7 @@ const skills = [
           <span className="flex items-center gap-2"><FaPhone /> 9327537382</span>
           <span className="flex items-center gap-2"><FaEnvelope /> parthkhambhadiya2310@gmail.com</span>
           <span className="flex items-center gap-2"><FaLinkedin /> <a href="http://www.linkedin.com/in/parth-khambhadiya-214563224" className="text-blue-600 underline">LinkedIn</a></span>
-          <span className="flex items-center gap-2"><FaGithub /> <a href="https://github.com/Parth0045" className="text-blue-600 underline">GitHub</a></span>
+          <span className="flex items-center gap-2"><FaGithub /> <a href="https://github.com/CodeBy-ParthKhambhadiya" className="text-blue-600 underline">GitHub</a></span>
         </div>
       </motion.div>
 

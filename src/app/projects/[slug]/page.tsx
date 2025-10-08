@@ -1,29 +1,29 @@
 'use client';
 
-import React, { useState, use } from 'react';
+import React, { use, useState } from 'react';
 import { notFound } from 'next/navigation';
 import { projects } from '../page';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { GiCelebrationFire } from 'react-icons/gi';
-import { FiArrowLeft } from 'react-icons/fi';
+import { FiArrowLeft, FiX } from 'react-icons/fi';
 import Link from 'next/link';
 import Slider from 'react-slick';
 import Image from 'next/image';
-import { sliderSettings } from '@/components/Project/images';
+import { Arrow, sliderSettings } from '@/components/Project/images';
 
-interface ProjectProps {
-    params: Promise<{ slug: string }>;
+interface ProjectPageProps {
+    params: Promise<{ slug: string }>; // params is now a Promise
 }
-export default function ProjectPage({ params }: ProjectProps) {
-    // unwrap the promise (or use directly if not a Promise)
-const { slug } = use(params);
+export default function ProjectPage({ params }: ProjectPageProps) {
+    const { slug } = use(params); // <-- This is the new way
     const project = projects.find((p) => p.slug === slug);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [zoomImage, setZoomImage] = useState<string | null>(null);
 
     if (!project) return notFound();
 
     const totalImages = project.images?.length || 0;
-
+    const images = project.images || []; // fallback to empty array
     return (
         <main className="flex flex-col items-center px-4 sm:px-6 lg:px-10 py-10 sm:py-16 bg-gray-50 min-h-screen">
             <div className="w-full max-w-5xl bg-white rounded-3xl shadow-lg p-5 sm:p-8 md:p-10">
@@ -37,7 +37,7 @@ const { slug } = use(params);
                     Back
                 </Link>
 
-                {/* Image Slider Section */}
+                {/* Image Slider */}
                 <div className="relative mb-6">
                     <Slider
                         {...sliderSettings}
@@ -46,9 +46,13 @@ const { slug } = use(params);
                         slidesToScroll={1}
                         dots={false}
                     >
-                        {project.images && project.images.length > 0 ? (
-                            project.images.map((img, idx) => (
-                                <div key={idx} className="flex items-center justify-center">
+                        {images.length > 0 ? (
+                            images.map((img, idx) => (
+                                <div
+                                    key={idx}
+                                    className="flex items-center justify-center cursor-zoom-in"
+                                    onClick={() => setZoomImage(img)}
+                                >
                                     <Image
                                         src={img}
                                         alt={`${project.title} screenshot ${idx + 1}`}
@@ -73,9 +77,53 @@ const { slug } = use(params);
                     )}
                 </div>
 
+                {zoomImage && (
+                    <div
+                        className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+                        onClick={() => setZoomImage(null)} // click on background closes zoom
+                    >
+                        {/* Close button */}
+                        <button
+                            className="absolute top-5 right-5 text-white text-2xl p-2 bg-black/50 rounded-full hover:bg-white hover:text-black transition"
+                            onClick={(e) => { e.stopPropagation(); setZoomImage(null); }}
+                        >
+                            <FiX />
+                        </button>
+
+                        <div
+                            className="w-full max-w-[80vw] max-h-[90vh]"
+                            onClick={(e) => e.stopPropagation()} 
+                        >
+                            <Slider
+                                {...sliderSettings} 
+                                initialSlide={currentSlide}
+                                arrows={true}
+                                nextArrow={<Arrow direction="next" top="40%" />}
+                                prevArrow={<Arrow direction="prev" top="40%" />} 
+                            >
+                                {images.map((img, idx) => (
+                                    <div
+                                        key={idx}
+                                        className="flex items-center justify-center"
+                                        onClick={(e) => e.stopPropagation()} 
+                                    >
+                                        <Image
+                                            src={img}
+                                            alt={`${project.title} zoomed ${idx + 1}`}
+                                            width={1800}
+                                            height={1200}
+                                        />
+                                    </div>
+                                ))}
+                            </Slider>
+                        </div>
+                    </div>
+                )}
+
+
+
                 {/* GitHub & Live Links */}
-                 <div className="flex flex-wrap gap-3 mb-3 mt-3">
-                    {/* Single GitHub */}
+                <div className="flex flex-wrap gap-3 mb-3 mt-3">
                     {project.github && (
                         <a
                             href={project.github}
@@ -89,8 +137,6 @@ const { slug } = use(params);
                             </span>
                         </a>
                     )}
-
-                    {/* Multiple GitHub links */}
                     {project.githubLinks?.map((link, i) => (
                         <a
                             key={i}
@@ -105,8 +151,6 @@ const { slug } = use(params);
                             </span>
                         </a>
                     ))}
-
-                    {/* Live Demo */}
                     {project.live && (
                         <a
                             href={project.live}
@@ -121,7 +165,6 @@ const { slug } = use(params);
                         </a>
                     )}
                 </div>
-
 
                 {/* Project Title */}
                 <div className="flex items-center gap-2 sm:gap-3 mb-4 flex-wrap">
