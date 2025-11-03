@@ -7,7 +7,7 @@ import Link from "next/link";
 declare module "react-slick";
 import Slider from "react-slick";
 import Image from "next/image";
-import { instaplugProjectImages, eCommerceProjectImages, pixenProjectImages, sliderSettings } from "@/components/Project/images";
+import { instaplugProjectImages, eCommerceProjectImages, pixenProjectImages, sliderSettings, battleZoneProjectImages } from "@/components/Project/images";
 
 
 export interface Project {
@@ -15,6 +15,7 @@ export interface Project {
   images?: string[]; // ✅ add this
   slug: string; // ✅ add this
   github?: string;
+  type?: string; // ✅ added
   live?: string;
   description: string;
   important: boolean;
@@ -22,112 +23,67 @@ export interface Project {
   githubLinks?: { label: string; url: string }[];
 }
 export const projects: Project[] = [
-
   {
-    title: "Easy Exam Web",
-    slug: "easy-exam-web",
-    github: "",
-    important: false,
-    live: "",
-    description: "A web application for students to take exams online, with dynamic scoring and analytics features.",
+    title: "BattleZone",
+    slug: "battlezone",
+        images: battleZoneProjectImages,
+
+    // github: "https://github.com/CodeBy-ParthKhambhadiya/battle-zone-backend",
+    githubLinks: [
+
+      { label: "battle-zone-backend", url: "https://github.com/CodeBy-ParthKhambhadiya/battle-zone-backend" },
+      { label: "battle-zone-frontend", url: "https://github.com/CodeBy-ParthKhambhadiya/battle-zone-frontend" },
+
+    ],
+    important: true,
+    type: "most important", // ✅ tag added
+
+    live: "http://battle-zone-frontend.vercel.app/",
+    description: "A competitive gaming and tournament platform inspired by Dream11, built with Next.js, Node.js, and MongoDB Atlas. Users can join matches, manage wallets, and compete in real-time while admins and organizers handle events and payouts seamlessly.",
     details: (
       <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
-        <h4 className="font-semibold">Project Overview</h4>
-        <p>
-          A full-stack web application to manage online exams with three panels:
-          <strong>Admin</strong>, <strong>Teacher</strong>, and <strong>Student</strong>.
-        </p>
+        <h4 className="font-semibold">1. Purpose</h4>
+        <p>- BattleZone is an online eSports and fantasy gaming platform for organizing and joining battles.</p>
+        <p>- Allows players to participate in games, manage wallets, and track earnings.</p>
+        <p>- Admins and organizers can create, manage, and verify tournaments securely.</p>
 
-        <h4 className="font-semibold mt-2">1. Technology Stack</h4>
+        <h4 className="font-semibold mt-2">2. Frontend (Next.js + React + Tailwind CSS)</h4>
         <ul className="list-disc list-inside">
-          <li>Frontend: HTML5, CSS3, JavaScript</li>
-          <li>Backend: PHP</li>
-          <li>Database: MySQL</li>
-          <li>Optional: Bootstrap for responsive design</li>
+          <li>Next.js for SSR/SSG and optimized routing.</li>
+          <li>React hooks for managing state and interactivity.</li>
+          <li>Tailwind CSS for clean, responsive UI design.</li>
+          <li>Dynamic dashboards for players, organizers, and admins.</li>
         </ul>
+        <p>Key Pages: Home, Matches, Wallet, Profile, Admin Panel, Organizer Dashboard, Login/Register.</p>
 
-        <h4 className="font-semibold mt-2">2. Panels & Features</h4>
-
-        <strong>Admin Panel:</strong>
-        <ul className="list-disc list-inside ml-4">
-          <li>Manage teachers and students accounts (CRUD operations).</li>
-          <li>Create and manage exams, categories, and question banks.</li>
-          <li>View exam analytics and student performance reports.</li>
-        </ul>
-
-        <strong>Teacher Panel:</strong>
-        <ul className="list-disc list-inside ml-4">
-          <li>Create MCQ questions and assign them to exams.</li>
-          <li>Manage exam schedules and duration.</li>
-          <li>Monitor student submissions and scores.</li>
-        </ul>
-
-        <strong>Student Panel:</strong>
-        <ul className="list-disc list-inside ml-4">
-          <li>Take assigned exams within a time limit.</li>
-          <li>Real-time question navigation with next/previous buttons.</li>
-          <li>View instant results and analytics after submission.</li>
-        </ul>
-
-        <h4 className="font-semibold mt-2">3. Key Functionalities</h4>
+        <h4 className="font-semibold mt-2">3. Backend (Node.js + Express + MongoDB Atlas)</h4>
         <ul className="list-disc list-inside">
-          <li>Secure login for admin, teacher, and student roles.</li>
-          <li>CRUD operations for exams, questions, and users.</li>
-          <li>Dynamic scoring system with instant result calculation.</li>
-          <li>Responsive UI for desktop and mobile devices.</li>
-          <li>Search and filter questions or exams by category.</li>
+          <li>RESTful APIs built with Express.js.</li>
+          <li>MongoDB Atlas for secure and scalable data storage.</li>
+          <li>JWT-based authentication and role-based access control (Admin, Organizer, Player).</li>
+          <li>Cloudinary integration for user and match image uploads.</li>
         </ul>
 
-        <h4 className="font-semibold mt-2">4. Tech Summary</h4>
+        <h4 className="font-semibold mt-2">4. Features & Functionality</h4>
         <ul className="list-disc list-inside">
-          <li>Frontend: HTML, CSS, JavaScript, Bootstrap</li>
-          <li>Backend: PHP</li>
-          <li>Database: MySQL</li>
-          <li>Roles: Admin, Teacher, Student</li>
-          <li>Features: CRUD, Exam scheduling, Scoring & Analytics</li>
-        </ul>
-      </div>
-    ),
-  },
-  {
-    title: "Shopping Platform",
-    slug: "shopping-platform",
-    github: "",
-    important: false,
-    live: "",
-    description: "A PHP-based online marketplace supporting sellers and buyers with full product management features.",
-    details: (
-      <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
-        <h4 className="font-semibold">1. User Roles</h4>
-        <ul className="list-disc list-inside">
-          <li>Seller: Add, edit, delete, enable/disable products and manage orders.</li>
-          <li>Buyer: Browse products, add to cart, checkout, and manage profile.</li>
+          <li>Role Management: Admin, Organizer, Player.</li>
+          <li>Match Creation and Joining System (similar to Dream11).</li>
+          <li>Wallet System: Add, withdraw, and track balance.</li>
+          <li>Transaction History and Payment Verification.</li>
+          <li>Cloudinary integration for match banners and user avatars.</li>
+          <li>Secure Authentication with OTP/Email verification.</li>
+          <li>Real-time updates for match status and player join status.</li>
         </ul>
 
-        <h4 className="font-semibold mt-2">2. Product Management</h4>
+        <h4 className="font-semibold mt-2">5. Tech Stack Summary</h4>
         <ul className="list-disc list-inside">
-          <li>Create and manage product categories and sub-categories.</li>
-          <li>Add, edit, delete, enable/disable products.</li>
-          <li>Upload multiple images per product with bulk image management.</li>
-          <li>Batch operations: multiple delete, bulk updates.</li>
-        </ul>
-
-        <h4 className="font-semibold mt-2">3. Features & Functionality</h4>
-        <ul className="list-disc list-inside">
-          <li>Search, filter, and sort products.</li>
-          <li>Cart and checkout system with order tracking.</li>
-          <li>Seller dashboard: Manage products, view orders, analytics.</li>
-          <li>Buyer dashboard: Order history, wishlist, profile management.</li>
-          <li>Email notifications for order updates and account activity.</li>
-        </ul>
-
-        <h4 className="font-semibold mt-2">4. Tech Stack Summary</h4>
-        <ul className="list-disc list-inside">
-          <li>Backend: PHP (procedural or OOP as needed)</li>
-          <li>Database: MySQL</li>
-          <li>Frontend: HTML, CSS, JavaScript</li>
-          <li>Authentication & Authorization: Session-based login, role management</li>
-          <li>Image Handling: Multiple image upload & management</li>
+          <li>Frontend: Next.js, React</li>
+          <li>Styling: Tailwind CSS</li>
+          <li>Backend: Node.js, Express.js</li>
+          <li>Database: MongoDB Atlas (Mongoose ODM)</li>
+          <li>File Storage: Cloudinary</li>
+          <li>Authentication: JWT + Role-based Access</li>
+          <li>Deployment: Vercel (Frontend) & Render / Railway (Backend)</li>
         </ul>
       </div>
     ),
@@ -208,6 +164,7 @@ export const projects: Project[] = [
   {
     title: "E-commerce",
     slug: "e-commerce",
+    type: "important", // ✅ added
     github: "",
     images: eCommerceProjectImages,
     important: true,
@@ -260,50 +217,6 @@ export const projects: Project[] = [
     ),
   },
   {
-    title: "Pixen Interactive Tools",
-    slug: "pixen-interactive-tools",
-    images: pixenProjectImages,
-    important: false,
-    github: "https://github.com/CodeBy-ParthKhambhadiya/pixen-interactive-tools",
-    live: "https://pixen-interactive-tools.vercel.app/", // replace with actual live link
-    description: "A minimal toolkit for playing with pixels and design. Perfect for creative experiments, graphics, or image-based projects.",
-    details: (
-      <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
-
-        <h4 className="font-semibold">1. Purpose</h4>
-        <p>- Provides tools to experiment with pixel-based designs and interactive graphics.</p>
-        <p>- Allows users to quickly test ideas, scan text, and simulate AI chats.</p>
-
-        <h4 className="font-semibold mt-2">2. Tools & Features</h4>
-        <ul className="list-disc list-inside">
-          <li>Text Scanner: Upload and extract text from images.</li>
-          <li>Quick AI Chat Simulator: Test conversational AI quickly.</li>
-          <li>Emoji AI Chat Simulator: Play with AI responses in emoji form.</li>
-          <li>Pixel Playground: Experiment with pixel art and designs interactively.</li>
-          <li>Copy & Reuse: Easily copy generated content for your projects.</li>
-        </ul>
-
-        <h4 className="font-semibold mt-2">3. Frontend & UI</h4>
-        <ul className="list-disc list-inside">
-          <li>Responsive UI for desktop and mobile.</li>
-          <li>Minimalistic design for better focus on tools.</li>
-          <li>Interactive elements with immediate feedback.</li>
-        </ul>
-
-        <h4 className="font-semibold mt-2">4. Tech Stack Summary</h4>
-        <ul className="list-disc list-inside">
-          <li>Frontend: Next.js, React</li>
-          <li>Styling: Tailwind CSS</li>
-          <li>State Management: useState / useContext</li>
-          <li>File Handling: Browser File API for uploads</li>
-          <li>Animations & Interactivity: Framer Motion / CSS transitions</li>
-          <li>Deployment: Vercel</li>
-        </ul>
-
-      </div>
-    ),
-  },
-  {
     title: "Portfolio Website",
     slug: "portfolio-website",
     github: "https://github.com/CodeBy-ParthKhambhadiya/parth-portfolio",
@@ -346,6 +259,164 @@ export const projects: Project[] = [
       </div>
     ),
   },
+   {
+    title: "Easy Exam Web",
+    slug: "easy-exam-web",
+    github: "",
+    type: "important", // ✅ added
+    important: false,
+    live: "",
+    description: "A web application for students to take exams online, with dynamic scoring and analytics features.",
+    details: (
+      <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
+        <h4 className="font-semibold">Project Overview</h4>
+        <p>
+          A full-stack web application to manage online exams with three panels:
+          <strong>Admin</strong>, <strong>Teacher</strong>, and <strong>Student</strong>.
+        </p>
+
+        <h4 className="font-semibold mt-2">1. Technology Stack</h4>
+        <ul className="list-disc list-inside">
+          <li>Frontend: HTML5, CSS3, JavaScript</li>
+          <li>Backend: PHP</li>
+          <li>Database: MySQL</li>
+          <li>Optional: Bootstrap for responsive design</li>
+        </ul>
+
+        <h4 className="font-semibold mt-2">2. Panels & Features</h4>
+
+        <strong>Admin Panel:</strong>
+        <ul className="list-disc list-inside ml-4">
+          <li>Manage teachers and students accounts (CRUD operations).</li>
+          <li>Create and manage exams, categories, and question banks.</li>
+          <li>View exam analytics and student performance reports.</li>
+        </ul>
+
+        <strong>Teacher Panel:</strong>
+        <ul className="list-disc list-inside ml-4">
+          <li>Create MCQ questions and assign them to exams.</li>
+          <li>Manage exam schedules and duration.</li>
+          <li>Monitor student submissions and scores.</li>
+        </ul>
+
+        <strong>Student Panel:</strong>
+        <ul className="list-disc list-inside ml-4">
+          <li>Take assigned exams within a time limit.</li>
+          <li>Real-time question navigation with next/previous buttons.</li>
+          <li>View instant results and analytics after submission.</li>
+        </ul>
+
+        <h4 className="font-semibold mt-2">3. Key Functionalities</h4>
+        <ul className="list-disc list-inside">
+          <li>Secure login for admin, teacher, and student roles.</li>
+          <li>CRUD operations for exams, questions, and users.</li>
+          <li>Dynamic scoring system with instant result calculation.</li>
+          <li>Responsive UI for desktop and mobile devices.</li>
+          <li>Search and filter questions or exams by category.</li>
+        </ul>
+
+        <h4 className="font-semibold mt-2">4. Tech Summary</h4>
+        <ul className="list-disc list-inside">
+          <li>Frontend: HTML, CSS, JavaScript, Bootstrap</li>
+          <li>Backend: PHP</li>
+          <li>Database: MySQL</li>
+          <li>Roles: Admin, Teacher, Student</li>
+          <li>Features: CRUD, Exam scheduling, Scoring & Analytics</li>
+        </ul>
+      </div>
+    ),
+  },
+  {
+    title: "Shopping Platform",
+    slug: "shopping-platform",
+    github: "",
+    type: "important", // ✅ added
+    important: false,
+    live: "",
+    description: "A PHP-based online marketplace supporting sellers and buyers with full product management features.",
+    details: (
+      <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
+        <h4 className="font-semibold">1. User Roles</h4>
+        <ul className="list-disc list-inside">
+          <li>Seller: Add, edit, delete, enable/disable products and manage orders.</li>
+          <li>Buyer: Browse products, add to cart, checkout, and manage profile.</li>
+        </ul>
+
+        <h4 className="font-semibold mt-2">2. Product Management</h4>
+        <ul className="list-disc list-inside">
+          <li>Create and manage product categories and sub-categories.</li>
+          <li>Add, edit, delete, enable/disable products.</li>
+          <li>Upload multiple images per product with bulk image management.</li>
+          <li>Batch operations: multiple delete, bulk updates.</li>
+        </ul>
+
+        <h4 className="font-semibold mt-2">3. Features & Functionality</h4>
+        <ul className="list-disc list-inside">
+          <li>Search, filter, and sort products.</li>
+          <li>Cart and checkout system with order tracking.</li>
+          <li>Seller dashboard: Manage products, view orders, analytics.</li>
+          <li>Buyer dashboard: Order history, wishlist, profile management.</li>
+          <li>Email notifications for order updates and account activity.</li>
+        </ul>
+
+        <h4 className="font-semibold mt-2">4. Tech Stack Summary</h4>
+        <ul className="list-disc list-inside">
+          <li>Backend: PHP (procedural or OOP as needed)</li>
+          <li>Database: MySQL</li>
+          <li>Frontend: HTML, CSS, JavaScript</li>
+          <li>Authentication & Authorization: Session-based login, role management</li>
+          <li>Image Handling: Multiple image upload & management</li>
+        </ul>
+      </div>
+    ),
+  },
+    {
+    title: "Pixen Interactive Tools",
+    slug: "pixen-interactive-tools",
+    images: pixenProjectImages,
+    important: false,
+
+    github: "https://github.com/CodeBy-ParthKhambhadiya/pixen-interactive-tools",
+    live: "https://pixen-interactive-tools.vercel.app/", // replace with actual live link
+    description: "A minimal toolkit for playing with pixels and design. Perfect for creative experiments, graphics, or image-based projects.",
+    details: (
+      <div className="mt-2 text-gray-700 space-y-2 text-sm md:text-base">
+
+        <h4 className="font-semibold">1. Purpose</h4>
+        <p>- Provides tools to experiment with pixel-based designs and interactive graphics.</p>
+        <p>- Allows users to quickly test ideas, scan text, and simulate AI chats.</p>
+
+        <h4 className="font-semibold mt-2">2. Tools & Features</h4>
+        <ul className="list-disc list-inside">
+          <li>Text Scanner: Upload and extract text from images.</li>
+          <li>Quick AI Chat Simulator: Test conversational AI quickly.</li>
+          <li>Emoji AI Chat Simulator: Play with AI responses in emoji form.</li>
+          <li>Pixel Playground: Experiment with pixel art and designs interactively.</li>
+          <li>Copy & Reuse: Easily copy generated content for your projects.</li>
+        </ul>
+
+        <h4 className="font-semibold mt-2">3. Frontend & UI</h4>
+        <ul className="list-disc list-inside">
+          <li>Responsive UI for desktop and mobile.</li>
+          <li>Minimalistic design for better focus on tools.</li>
+          <li>Interactive elements with immediate feedback.</li>
+        </ul>
+
+        <h4 className="font-semibold mt-2">4. Tech Stack Summary</h4>
+        <ul className="list-disc list-inside">
+          <li>Frontend: Next.js, React</li>
+          <li>Styling: Tailwind CSS</li>
+          <li>State Management: useState / useContext</li>
+          <li>File Handling: Browser File API for uploads</li>
+          <li>Animations & Interactivity: Framer Motion / CSS transitions</li>
+          <li>Deployment: Vercel</li>
+        </ul>
+
+      </div>
+    ),
+  },
+
+
 ];
 export default function ProjectsPage() {
 
@@ -359,70 +430,43 @@ export default function ProjectsPage() {
       </section>
 
       {/* Masonry-like container */}
-      <section className="w-full max-w-7xl columns-1 sm:columns-2 lg:columns-3 space-y-4">
+      <section className="w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project) => (
           <div
             key={project.slug}
-            className="break-inside-avoid mb-4 block overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow transition-shadow duration-300"
+            className="block overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow transition-shadow duration-300 hover:shadow-lg bg-white dark:bg-gray-800"
           >
-            {/* Clickable part for project page */}
-            <Link
-              href={`/projects/${project.slug}`}
-              className="block"
-            >
-              {/* Image / Color block */}
-              <div className="relative w-[414px] h-[234px] mx-auto">
-                <Slider
-                  {...sliderSettings}
-                  slidesToShow={1}       // one slide visible at a time
-                  slidesToScroll={1}     // scroll one slide at a time
-                  arrows={true}          // show arrows
-                >
-                  {project.images && project.images.length > 0
-                    ? project.images.reduce((acc: string[][], img, i) => {
-                      if (i % 1 === 0) acc.push([img]);
-                      else acc[acc.length - 1].push(img);
-                      return acc;
-                    }, []).map((group, index) => (
-                      <div key={index} className="flex flex-col gap-4 items-center">
-                        {group.map((img, idx) => (
-                          <div
-                            key={idx}
-                            className="w-[414px] h-[234px] flex items-center justify-center"
-                          >
-                            <Image
-                              src={img}
-                              alt={`${project.title} screenshot ${idx + 1}`}
-                              width={414}
-                              height={234}
-                              className="object-cover rounded-lg"
-                            />
-                          </div>
-                        ))}
+            <Link href={`/projects/${project.slug}`} className="block">
+              <div className="relative w-full h-[234px]">
+                <Slider {...sliderSettings} slidesToShow={1} slidesToScroll={1} arrows={true}>
+                  {project.images && project.images.length > 0 ? (
+                    project.images.map((img, idx) => (
+                      <div key={idx} className="w-full h-[234px] flex items-center justify-center">
+                        <Image
+                          src={img}
+                          alt={`${project.title} screenshot ${idx + 1}`}
+                          width={414}
+                          height={234}
+                          className="object-cover w-full h-full"
+                        />
                       </div>
                     ))
-                    : (
-                      <div className="flex flex-col gap-4 items-center">
-                        <div className="w-[414px] h-[234px] flex items-center justify-center">
-                          <p className="text-gray-500 text-sm">No Image</p>
-                        </div>
-                      </div>
-                    )}
+                  ) : (
+                    <div className="flex items-center justify-center w-full h-[234px] bg-white dark:bg-gray-800 rounded-lg">
+                      <p className="text-gray-500 dark:text-gray-400 text-sm font-medium"></p>
+                    </div>
+
+                  )}
                 </Slider>
 
-                {/* Fire icon for important projects */}
                 {project.important && (
                   <div className="absolute top-2 right-2 bg-red-600 rounded-full p-1 shadow-lg animate-pulse">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="text-white" viewBox="0 0 16 16">
-                      <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15" />
-                    </svg>
+                    <FaFire className="text-white w-4 h-4" />
                   </div>
                 )}
               </div>
 
-
-              {/* Title, description */}
-              <div className="p-4 bg-white dark:bg-gray-800 relative">
+              <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1">
                   {project.title}
                 </h3>
@@ -434,8 +478,7 @@ export default function ProjectsPage() {
               </div>
             </Link>
 
-            {/* Buttons container (outside project Link) */}
-            <div className="flex flex-wrap gap-2 p-4 pt-0  bg-white dark:bg-gray-800 min-h-[40px]">
+            <div className="flex flex-wrap gap-2 p-4 pt-0 min-h-[40px]">
               {project.github || (project.githubLinks && project.githubLinks.length > 0) || project.live ? (
                 <>
                   {project.github && (
@@ -452,21 +495,20 @@ export default function ProjectsPage() {
                     </a>
                   )}
 
-                  {project.githubLinks && project.githubLinks.length > 0 &&
-                    project.githubLinks.map((link) => (
-                      <a
-                        key={link.url}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 px-3 py-1 bg-gray-800 text-white text-sm font-medium rounded hover:bg-gray-900 transition-colors duration-200 group"
-                      >
-                        <FaGithub className="w-4 h-4" />
-                        <span className="max-w-0 overflow-hidden transition-all duration-300 group-hover:max-w-xs ml-1 whitespace-nowrap">
-                          {link.label}
-                        </span>
-                      </a>
-                    ))}
+                  {project.githubLinks?.map((link) => (
+                    <a
+                      key={link.url}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 px-3 py-1 bg-gray-800 text-white text-sm font-medium rounded hover:bg-gray-900 transition-colors duration-200 group"
+                    >
+                      <FaGithub className="w-4 h-4" />
+                      <span className="max-w-0 overflow-hidden transition-all duration-300 group-hover:max-w-xs ml-1 whitespace-nowrap">
+                        {link.label}
+                      </span>
+                    </a>
+                  ))}
 
                   {project.live && (
                     <a
@@ -483,14 +525,13 @@ export default function ProjectsPage() {
                   )}
                 </>
               ) : (
-                // Placeholder to keep button space
                 <div className="w-full h-7"></div>
               )}
             </div>
-
           </div>
         ))}
       </section>
+
     </main>
 
 

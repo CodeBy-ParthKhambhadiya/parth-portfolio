@@ -47,6 +47,36 @@ export const pixenProjectImages: string[] = [
     "https://res.cloudinary.com/dbxwglui1/image/upload/v1759915740/pixen9_atoc7b.png",
     "https://res.cloudinary.com/dbxwglui1/image/upload/v1759915740/pixen10_ypwjjs.png"
 ];
+
+export const battleZoneProjectImages: string[] = [
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147018/battlezone1_s6k0oj.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147018/battlezone2_yagbb8.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147018/battlezone3_q2c4ex.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147018/battlezone4_iyt9ys.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147018/battlezone5_xiracg.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147017/battlezone6_oy4pmj.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147017/battlezone7_nybrmi.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147017/battlezone8_el3bti.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147017/battlezone9_nn6rzc.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147017/battlezone10_uiodev.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147016/battlezone11_yhiyu0.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147017/battlezone12_wjqawj.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147016/battlezone13_bilyzv.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147016/battlezone14_tqd5jp.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147016/battlezone16_ou5oot.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147014/battlezone17_voircd.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147015/battlezone18_ce7zvk.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147016/battlezone19_bdddmy.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147016/battlezone20_plegjb.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147015/battlezone21_lnzvg7.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147015/battlezone22_vzuxa3.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147015/battlezone23_dzv1n5.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147015/battlezone24_uzqwbj.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147016/battlezone25_h9qp9u.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147014/battlezone26_gcqps6.png",
+  "https://res.cloudinary.com/dbxwglui1/image/upload/v1762147014/battlezone27_extbzl.png"
+];
+
 export type ArrowProps = {
     onClick?: () => void;
     direction: "next" | "prev";
